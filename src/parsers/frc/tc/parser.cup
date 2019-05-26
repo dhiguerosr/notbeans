@@ -1,0 +1,860 @@
+package parsers.frc.tc;
+import gui.forms.ProjectManager;
+import java.util.Stack;
+import java_cup.runtime.Symbol;
+import parsers.frc.managers.*;
+
+parser code
+{:
+    
+
+    /**Metodo al que se llama automaticamente ante algun error sintactico.*/
+    public void syntax_error(Symbol s){
+        ErrorManager.add(String.valueOf(s.value),s.right,s.left,Err.SYNTACTIC);
+    }
+   
+
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+		ErrorManager.add(String.valueOf(s.value),s.right,s.left,Err.SYNTACTIC);
+    }
+
+:}
+action code
+{:
+	
+:}
+
+/*Declaracion de simbolos terminales*/
+terminal String FILE;
+terminal IMPORT;
+terminal PUBLIC;
+terminal PRIVATE;
+terminal VOID;
+terminal ARRAY;
+terminal SWITCH;
+terminal CASE;
+terminal BREAK;
+terminal DEFAULT;
+terminal IF;
+terminal ELSE;
+terminal CONTINUE;
+terminal FOR;
+terminal DO;
+terminal WHILE;
+terminal NEW;
+terminal INT;
+terminal FLOAT;
+terminal BOOL;
+terminal STRING;
+terminal CHAR;
+terminal String LINEA;
+terminal String TEXTO;
+terminal String ARC0;
+terminal String RECTANGULO;
+terminal String OVALO;
+terminal String POLIGONO;
+terminal String LIENZO;
+terminal String IMPRIMIR;
+terminal SHARP;
+terminal LESS;
+terminal GREATER;
+terminal DOT;
+terminal LPAREN;
+terminal RPAREN;
+terminal LBRACKET;
+terminal RBRACKET;
+terminal EQL;
+terminal PLUS;
+terminal MINUS;
+terminal UMINUS;
+terminal DIV;
+terminal TIMES;
+terminal REF;
+terminal COMA;
+terminal LHOOK;
+terminal RHOOK;
+terminal PLUSPLUS;
+terminal MINUSMINUS;
+terminal POW;
+terminal PLUSEQUALS;
+terminal MINUSEQUALS;
+terminal TIMESEQUALS;
+terminal DIVEQUALS;
+terminal AND;
+terminal OR;
+terminal NOT;
+terminal EQUALS;
+terminal NOTEQL;
+terminal GEQL;
+terminal LEQL;
+terminal ASK;
+terminal COLON;
+terminal TRUE;
+terminal FALSE;
+terminal NULL;
+terminal THIS;
+terminal RETURN;
+terminal CLASS;
+terminal EXTENDS;
+terminal STATIC;
+terminal String ID;
+terminal CAD;
+terminal CHR;
+terminal NUM;
+terminal DEC;
+terminal NEWLINE;
+
+
+/*Declaracion de simbolos NO terminales*/
+non terminal program;
+non terminal init_import;
+non terminal list_import;
+non terminal dec_import;
+
+non terminal init_class;
+non terminal class_body;
+non terminal list_class_expr;
+non terminal new_line;
+non terminal Integer visibility;
+
+non terminal Boolean is_static;
+non terminal declaration;
+non terminal var_dec;
+non terminal Type prim_type;
+non terminal Type var_type;
+non terminal Stack<Sym> var_list;
+non terminal Type array_type;
+non terminal String params;
+non terminal String list_params;
+non terminal String param;
+
+non terminal method_instructions;
+non terminal method_list_instructions;
+non terminal instruction;
+non terminal non_dec_instruction;
+
+non terminal assign;
+non terminal assign_op;
+non terminal list_dim_array;
+non terminal dim;
+non terminal Type expression;
+
+non terminal while_statement;
+non terminal do_while_statement;
+non terminal for_statement;
+non terminal Sym for_init;
+non terminal Sym if_statement;
+non terminal switch_statement;
+non terminal list_case;
+non terminal case_sentence;
+non terminal loop_inst;
+non terminal loop_inst_list;
+non terminal loop_instructions;
+non terminal for_instructions;
+
+non terminal Type op_ternario;
+non terminal Type logic_expression;
+non terminal Type arit_expression;
+non terminal Type instance;
+non terminal Type method_call;
+non terminal Type cast_value;
+
+non terminal Type var_call;
+non terminal Type var_dec_assign;
+non terminal Type value;
+non terminal Stack<Type> args;
+non terminal Stack<Type> arg_list;
+
+non terminal Type this_var_method_call;
+non terminal Type this_var_call;
+non terminal Type this_method_call;
+non terminal Type var_method_call;
+
+non terminal Type simple_call;
+non terminal Type simple_var_call;
+non terminal Type simple_method_call;
+non terminal Stack<Type> call_list;
+non terminal if_instructions;
+/*PRECEDENCES*/
+
+precedence left OR;
+precedence left AND;
+precedence left NOT;
+precedence left EQUALS;
+precedence left NOTEQL;
+precedence left GEQL;
+precedence left LEQL;
+precedence left GREATER;
+precedence left LESS;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIV;
+precedence left POW;
+precedence left UMINUS;
+
+//precedence left ELSE;
+
+/*GRAMMAR START*/
+start with program;
+
+program::= NEWLINE init_import
+	|init_import;
+
+init_import::= list_import init_class
+	|init_class;
+
+list_import::= dec_import NEWLINE list_import
+	|dec_import NEWLINE
+	|error NEWLINE list_import;
+
+
+dec_import::= SHARP IMPORT FILE:f;										
+
+
+init_class::=PUBLIC CLASS ID:id {:SymbolTableManager.setContext(SymbolTableManager.getType(id));:}
+	EXTENDS ID:type new_line LBRACKET class_body
+	| PUBLIC CLASS ID:id 	{:SymbolTableManager.setContext(SymbolTableManager.getType(id));:}
+	new_line LBRACKET class_body;						//declaración de clase sin herencia
+	
+
+class_body::= new_line list_class_expr RBRACKET new_line									//cuerpo de clase / fin de clase
+			|new_line RBRACKET new_line;												//fin de clase 
+
+list_class_expr::= declaration NEWLINE list_class_expr
+			|declaration NEWLINE
+			|error NEWLINE list_class_expr;				
+
+declaration::=visibility:access is_static:_s var_type:type ID:id COMA var_list:ids var_dec_assign
+			|visibility:access is_static:_s var_type:type ID:id var_dec_assign
+			|visibility:access is_static:_s var_type:type ID:id LPAREN params:p 					{:SymbolTableManager.setMethodContext(id+p+"()"); :}
+			RPAREN new_line LBRACKET new_line method_instructions RBRACKET							{:SymbolTableManager.removeContext(); :}
+			|visibility:access is_static:_s ID:type ID:id COMA var_list:ids var_dec_assign
+			|visibility:access is_static:_s ID:type ID:id var_dec_assign
+			|visibility:access is_static:_s ID:type ID:id LPAREN params:p 							{:SymbolTableManager.setMethodContext(id+p+"()"); :}
+			RPAREN new_line LBRACKET new_line method_instructions RBRACKET							{:SymbolTableManager.removeContext(); :}
+			|visibility:access is_static:_s VOID ID:id  LPAREN params:p								{:SymbolTableManager.setMethodContext(id+p+"()"); :}
+			RPAREN new_line LBRACKET new_line method_instructions RBRACKET							{:SymbolTableManager.removeContext(); :}			
+			|visibility:access is_static:_s ID:id LPAREN params:p									{:SymbolTableManager.setMethodContext(id+p+"()"); :}
+			RPAREN new_line LBRACKET new_line method_instructions RBRACKET							{:SymbolTableManager.removeContext(); :};
+
+method_instructions::= method_list_instructions
+			|;
+
+method_list_instructions::= instruction NEWLINE method_list_instructions
+			|instruction NEWLINE
+			|error NEWLINE method_instructions;
+
+params::= list_params:syms 	{:RESULT = "_"+syms;:}
+		|					{:RESULT = "";:};
+		
+list_params ::= param:p COMA list_params:syms{:
+			RESULT = p + "_" + syms;
+		:}
+		|param:p{:
+			RESULT = p;
+		:};
+
+param::= REF prim_type:type ID:id{:
+			RESULT = type.getName();
+		:}
+		|var_type:type ID:id{:
+			RESULT = type.getName();
+		:}
+		|ID:type ID:id {:
+			RESULT = type;
+		:};
+
+var_dec_assign ::= EQL expression:t 	{:RESULT = t;:}
+				|					{:RESULT = null;:};
+
+
+var_type::= prim_type:type		{:RESULT = type;:}				
+			| array_type:type	{:RESULT = type;:};
+			
+prim_type::= INT 		{:RESULT = SymbolTableManager.getType("int");:}		
+			| FLOAT		{:RESULT = SymbolTableManager.getType("float");:}		
+			| BOOL		{:RESULT = SymbolTableManager.getType("bool");:}	
+			| STRING 	{:RESULT = SymbolTableManager.getType("string");:}	
+			| CHAR		{:RESULT = SymbolTableManager.getType("char");:};	
+			
+array_type::= ARRAY LESS var_type:type GREATER{:
+			Type t = new Type("Array");
+			t.setSubtype(type);
+			RESULT = t;
+			:}
+			| ARRAY LESS ID:type GREATER{:
+				Type t = new Type("Array");
+				t.setSubtype(SymbolTableManager.getType(type));
+				RESULT = t;
+			:};
+
+var_list::= ID:id COMA var_list:ids 
+			| ID:id;
+
+
+value::= NUM	{: RESULT = SymbolTableManager.getType("int");:}
+		|DEC	{: RESULT = SymbolTableManager.getType("float");:}
+		|CAD	{: RESULT = SymbolTableManager.getType("string");:}
+		|CHR	{: RESULT = SymbolTableManager.getType("char");:}
+		|TRUE	{: RESULT = SymbolTableManager.getType("bool");:}
+		|FALSE	{: RESULT = SymbolTableManager.getType("bool");:};
+
+instruction::= var_dec
+		|non_dec_instruction;
+		
+non_dec_instruction::= 	assign
+		|while_statement
+		|do_while_statement
+		|for_statement
+		|if_statement
+		|switch_statement
+		|this_method_call
+		|BREAK
+		|CONTINUE
+		|RETURN expression
+		|RETURN
+		|TEXTO:id LPAREN arg_list:args RPAREN			{: 
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|LIENZO:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|IMPRIMIR:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				if(!t.isPrimitive()){
+					ErrorManager.add(id,idright,idleft,"El método " + id + " solo admite tipos primitivos",Err.SEMANTIC);
+				}
+			}
+		:}
+		|OVALO:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|LINEA:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|POLIGONO:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|RECTANGULO:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|ARC0:id LPAREN arg_list:args RPAREN{:
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				id += "_" + t.getName();
+			}
+			id+="()";
+			if(SymbolTableManager.getNativeMethod(id)==null){
+				ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:};
+		
+assign::= this_var_call:e1 assign_op expression:e2{:
+		if((e1 ==null || e2 ==null)||((!e1.equals(e2)) && (e2.cast(e1,e2right,e2left)==null)))
+			ErrorManager.add(e1 +" = "+ e2,e2right,e2left,"Tipos de datos incompatibles [" + e1 + "] = [" + e2 +"]",Err.SEMANTIC);
+		:}
+		|var_call PLUSPLUS
+		|var_call MINUSMINUS;
+
+list_dim_array::= dim list_dim_array
+		|dim;
+		
+dim::= LHOOK expression RHOOK;
+
+var_dec::= var_type:type var_list:ids EQL expression:e1{:
+			if((type ==null || e1 ==null)||((!type.equals(e1)) && (e1.cast(type,e1right,e1left)==null))){
+				ErrorManager.add(type +" = "+ e1,e1right,e1left,"Tipos de datos incompatibles [" + type + "] = [" + e1 +"]",Err.SEMANTIC);
+			}
+		:}
+		|ID:t var_list:ids EQL expression:e1 {:
+			Type type = SymbolTableManager.getType(t);
+			if((type ==null || e1 ==null)||(!type.equals(e1))){
+				ErrorManager.add(type +" = "+ e1,e1right,e1left,"Tipos de datos incompatibles [" + type + "] = [" + e1 +"]",Err.SEMANTIC);
+			}
+		:}
+		|var_type:type var_list:ids
+		|ID:type var_list:ids;
+
+
+assign_op::= EQL
+		|PLUSEQUALS
+		|MINUSEQUALS
+		|TIMESEQUALS
+		|DIVEQUALS;
+
+while_statement::= WHILE LPAREN expression RPAREN  loop_instructions; 
+
+do_while_statement::= DO new_line LBRACKET {:SymbolTableManager.openScope();:} new_line loop_inst RBRACKET new_line WHILE LPAREN expression RPAREN {:SymbolTableManager.removeContext();:};
+ 
+for_statement::= FOR LPAREN {:SymbolTableManager.openScope();:} for_init:s 
+	COMA expression COMA assign RPAREN for_instructions {:SymbolTableManager.removeContext();:};
+
+for_instructions::= new_line LBRACKET new_line loop_inst RBRACKET 	
+	|new_line non_dec_instruction;
+	
+for_init::= var_type:type ID:id  EQL expression  {: RESULT = new Sym(id, idright, idleft); :}
+		| assign {:RESULT = null;:};
+
+loop_instructions::= new_line LBRACKET {:SymbolTableManager.openScope();:} new_line loop_inst RBRACKET {:SymbolTableManager.removeContext();:}	
+	|new_line non_dec_instruction;
+
+loop_inst::= loop_inst_list
+	|;
+	
+loop_inst_list::= instruction NEWLINE loop_inst_list
+	| instruction NEWLINE
+	| error NEWLINE loop_inst_list;
+
+
+if_instructions::= new_line LBRACKET {:SymbolTableManager.openScope();:} new_line loop_inst RBRACKET{:SymbolTableManager.removeContext();:};
+	
+if_statement::= IF LPAREN expression RPAREN if_instructions ELSE if_statement 
+	|IF LPAREN expression RPAREN if_instructions ELSE if_instructions
+	|IF LPAREN expression RPAREN if_instructions;
+	
+switch_statement::= SWITCH LPAREN this_var_call RPAREN new_line LBRACKET NEWLINE list_case RBRACKET;			//definir var_call
+
+list_case::= case_sentence list_case
+	|case_sentence;
+
+case_sentence::= CASE value COLON NEWLINE loop_inst_list
+				|DEFAULT COLON NEWLINE loop_inst_list;
+
+expression::= op_ternario:t		{:RESULT = t;:}
+		|logic_expression:t		{:RESULT = t;:}
+		|arit_expression:t		{:RESULT = t;:}
+		|instance:t				{:RESULT = t;:}
+		|value:t				{:RESULT = t;:}
+		|cast_value:t			{:RESULT = t;:}
+		|this_var_method_call:t {:RESULT = t;:}
+		|NULL 					{:RESULT = null;:};
+		
+logic_expression::= expression:e1 OR expression:e2{:
+			if(e1 == null || e2 == null){
+				//Error semántico
+				ErrorManager.add("OR",e2right, e2left, "Tipos de datos incompatibles [null] OR [null]");
+			}else{
+				if(!e1.equals(SymbolTableManager.getType("bool")) || !e2.equals(SymbolTableManager.getType("bool"))){
+					//Error semántico
+					ErrorManager.add("OR",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] OR ["+e2+"]");
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 AND expression:e2{:
+			if(e1 == null || e2 == null){
+				ErrorManager.add("AND",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] AND ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!e1.equals(SymbolTableManager.getType("bool")) || !e2.equals(SymbolTableManager.getType("bool"))){
+					ErrorManager.add("AND",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] AND ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|NOT expression:e1{:
+			if(e1 == null){
+				ErrorManager.add("NOT",e1right, e1left, "Tipos de datos incompatibles NOT["+e1+"]",Err.SEMANTIC);
+			}else{
+				if(!e1.equals(SymbolTableManager.getType("bool"))){
+					ErrorManager.add("NOT",e1right, e1left, "Tipos de datos incompatibles NOT["+e1+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 EQUALS expression:e2{:
+			if(e1 == null || e2 == null){
+				ErrorManager.add("==",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] == ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!(e1.equals(e2)) && (e2.cast(e1, e2left, e2left)==null)){
+					ErrorManager.add("==",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] == ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 NOTEQL expression:e2{:
+			if(e1 == null || e2 == null){
+				ErrorManager.add("!=",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] != ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!(e1.equals(e2)) && (e2.cast(e1, e2left, e2left)==null)){
+					ErrorManager.add("!=",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] != ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 GEQL expression:e2{:
+			if(e1 == null || e2 == null){
+				//Error semántico
+				ErrorManager.add(">=",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] >= ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!(e1.equals(e2)) && (e2.cast(e1, e2left, e2left)==null)){
+					//Error semántico
+					ErrorManager.add(">=",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] >= ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 GREATER expression:e2{:
+			if(e1 == null || e2 == null){
+				//Error semántico
+				ErrorManager.add(">",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] > ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!(e1.equals(e2)) && (e2.cast(e1, e2left, e2left)==null)){
+					//Error semántico
+					ErrorManager.add(">",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] > ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 LEQL expression:e2{:
+			if(e1 == null || e2 == null){
+				//Error semántico
+				ErrorManager.add("<=",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] <= ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!(e1.equals(e2)) && (e2.cast(e1, e2left, e2left)==null)){
+					//Error semántico
+					ErrorManager.add("<=",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] <= ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:}
+		|expression:e1 LESS expression:e2{:
+			if(e1 == null || e2 == null){
+				//Error 
+				ErrorManager.add("<",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] < ["+e2+"]",Err.SEMANTIC);
+			}else{
+				if(!(e1.equals(e2)) && (e2.cast(e1, e2left, e2left)==null)){
+					//Error 
+					ErrorManager.add("<",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] < ["+e2+"]",Err.SEMANTIC);
+				}
+			}
+			RESULT = SymbolTableManager.getType("bool");
+		:};
+
+arit_expression::= expression:e1 PLUS expression:e2{:
+			if(e1!=null && e2!=null){
+				RESULT = e1.implicitCast(e2,'+',e2right,e2left);
+			}else{
+				ErrorManager.add("+",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] + ["+e2+"]",Err.SEMANTIC);
+				RESULT = null;
+			}
+		:}
+		|expression:e1 MINUS expression:e2{:
+			if(e1!=null && e2!=null){
+				RESULT = e1.implicitCast(e2,'-',e2right,e2left);
+			}else{
+				ErrorManager.add("-",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] - ["+e2+"]",Err.SEMANTIC);
+				RESULT = null;
+			}
+		:}
+		|expression:e1 TIMES expression:e2{:
+			if(e1!=null && e2!=null){
+				RESULT = e1.implicitCast(e2,'*',e2right,e2left);
+			}else{
+				ErrorManager.add("*",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] * ["+e2+"]",Err.SEMANTIC);
+				RESULT = null;
+			}
+		:}
+		|expression:e1 DIV expression:e2{:
+			if(e1!=null && e2!=null){
+				RESULT = e1.implicitCast(e2,'/',e2right,e2left);
+			}else{
+				ErrorManager.add("/",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] / ["+e2+"]",Err.SEMANTIC);
+				RESULT = null;
+			}
+		:}
+		|expression:e1 POW expression:e2{:
+			if(e1!=null && e2!=null){
+				RESULT = e1.implicitCast(e2,'^',e2right,e2left);
+			}else{
+				ErrorManager.add("^",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] ^ ["+e2+"]",Err.SEMANTIC);
+				RESULT = null;
+			}
+		:}
+		|LPAREN expression:e1 RPAREN{:
+			RESULT = e1;
+		:}
+		|MINUS expression:e1 {:
+			if(e1==null || !e1.equals(SymbolTableManager.getType("int")) || !e1.equals(SymbolTableManager.getType("float"))){
+				ErrorManager.add("-",e1right, e1left, "Tipos de datos incompatibles -["+e1+"]",Err.SEMANTIC);
+			}else{
+				RESULT = e1;
+			}
+		:}%prec UMINUS;
+		
+op_ternario::= LPAREN expression:lt RPAREN ASK LBRACKET expression:e1 RBRACKET  COLON LBRACKET expression:e2 RBRACKET{:
+				if(lt!=null && lt.equals(SymbolTableManager.getType("bool"))){
+					if(e1 == null || e2 == null){
+						ErrorManager.add(":",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] : ["+e2+"]",Err.SEMANTIC);
+						RESULT = null;
+					}else{
+						if(e1.equals(e2)||e2.cast(e1,e2left,e2right)!=null){
+							RESULT = e1;
+						}else{
+							ErrorManager.add(":",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] : ["+e2+"]",Err.SEMANTIC);
+							RESULT = null;
+						}
+					}
+				}else{
+					ErrorManager.add("?",ltright, ltleft, "Tipos de datos incompatibles ("+lt+")? Se esperaba una expresión lógica",Err.SEMANTIC);
+					RESULT = null;
+				}
+			:}
+		| LPAREN expression:lt RPAREN ASK  expression:e1  COLON  expression:e2{:
+				if(lt!=null && lt.equals(SymbolTableManager.getType("bool"))){
+					if(e1 == null || e2 == null){
+						ErrorManager.add(":",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] : ["+e2+"]",Err.SEMANTIC);
+						RESULT = null;
+					}else{
+						if(e1.equals(e2)||e2.cast(e1,e2left,e2right)!=null){
+							RESULT = e1;
+						}else{
+							ErrorManager.add(":",e2right, e2left, "Tipos de datos incompatibles ["+e1+"] : ["+e2+"]",Err.SEMANTIC);
+							RESULT = null;
+						}
+					}
+				}else{
+					ErrorManager.add("?",ltright, ltleft, "Tipos de datos incompatibles ("+lt+")? Se esperaba una expresión lógica",Err.SEMANTIC);
+					RESULT = null;
+				}
+			:};
+			
+instance ::= NEW ID:id LPAREN arg_list:args RPAREN{:
+			Type type = SymbolTableManager.getType(id);
+			if(type!=null){
+				SymbolTableManager.setContext(type,true);
+				
+				while(!args.isEmpty()){
+					Type t = args.pop();
+					id += "_" + t.getName();
+				}
+				id+="()";
+				Sym method = SymbolTableManager.getSymbol(id,true);
+				if(method!=null){
+					if(method.isFunction()&&method.isConstructor()){
+						/*if(method.getArguments().size()==args.size()){
+							if(!method.validateArguments(args)){
+								ErrorManager.add(id,idright,idleft,"Los tipos de argumentos para el constructor " + id + " no coinciden",Err.SEMANTIC);
+							}
+						}else{
+							ErrorManager.add(id,idright,idleft,"Los argumentos de " + id + " difieren en número [requerido = " + method.getArguments().size() + ", encontrados " + args.size() + "]",Err.SEMANTIC);
+						}*/
+						RESULT = method.getType();
+					}else{
+						RESULT = method.getType();
+						ErrorManager.add(id,idright,idleft,"El constructor " + id + " no existe en el contexto actual",Err.SEMANTIC);
+					}
+				}else{
+					RESULT = type;
+					ErrorManager.add(id,idright,idleft,"El constructor " + id + " no existe en el contexto actual",Err.SEMANTIC);
+				}
+				SymbolTableManager.removeContext(true);
+			}else{
+				RESULT = null;
+				ErrorManager.add(id,idright,idleft,"La clase " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			}
+		:}
+		|NEW ARRAY LPAREN arg_list:args RPAREN{:
+			int dims = args.size();
+			while(!args.isEmpty()){
+				Type t = args.pop();
+				if(t==null || !t.equals(SymbolTableManager.getType("int"))){
+					ErrorManager.add("Array", argsright, argsleft,"Se esperaba un entero y se encontró " + t,Err.SEMANTIC);
+				}
+			}
+			Type r = new Type("Array");
+			r.setDims(dims);
+			RESULT = r;
+		:};  
+				
+simple_method_call::= ID:id 
+	{:SymbolTableManager.setContext(SymbolTableManager.getCurrentContext(),true);:}
+	LPAREN arg_list:args RPAREN {:
+	SymbolTableManager.removeContext(true);
+	if(SymbolTableManager.getCurrentContext(true)==null)
+			SymbolTableManager.setContext(SymbolTableManager.getCurrentContext(),true);
+	while(!args.isEmpty()){
+		Type t = args.pop();
+		id += "_" + t.getName();
+	}
+	id+="()";
+	Sym method = SymbolTableManager.getSymbol(id,true);
+	if(method!=null){
+		if(method.isFunction()&&!method.isConstructor()){
+			RESULT = method.getType();
+		}else{
+			RESULT = method.getType();
+			ErrorManager.add(id,idright,idleft,"El método " + id + " es un constructor",Err.SEMANTIC);
+		}
+	}else{
+		RESULT = null;
+		ErrorManager.add(id,idright,idleft,"El método " + id + " no existe en el contexto actual",Err.SEMANTIC);
+	}
+:};
+	
+		
+arg_list::= args:tipos{:
+		RESULT = tipos;
+	:}
+	|{:RESULT = new Stack<>();:};
+args::= expression:t COMA args:tipos{:
+		tipos.push(t);
+		RESULT = tipos;
+	:}
+		|expression:t{:
+			Stack<Type> tipos = new Stack<>();
+			tipos.push(t);
+			RESULT = tipos;
+		:};
+
+this_method_call ::= THIS DOT method_call:t 		{:SymbolTableManager.removeContext(true); RESULT = t;:}
+		| 						//{:SymbolTableManager.setContext(SymbolTableManager.getCurrentContext(),true);:}
+		method_call:t			{:SymbolTableManager.removeContext(true); RESULT = t;:};
+
+this_var_call ::= THIS DOT var_call:t				{:SymbolTableManager.removeContext(true); RESULT = t;:}
+		|var_call:t									{:SymbolTableManager.removeContext(true); RESULT = t;:};
+		
+		
+this_var_method_call ::= THIS DOT var_method_call:t 	{:SymbolTableManager.removeContext(true); RESULT = t;:}
+		|						//{:SymbolTableManager.setContext(SymbolTableManager.getCurrentContext(),true);:}
+		var_method_call:t		{:SymbolTableManager.removeContext(true);RESULT = t;:};
+
+var_method_call ::= var_call:t 	{:RESULT = t;:}
+		|method_call:t			{:RESULT = t;:};
+		
+var_call ::= call_list:types DOT simple_var_call:t{:
+			SymbolTableManager.removeContext(true);
+			while(!types.isEmpty()){
+				types.pop();
+				SymbolTableManager.removeContext(true);
+			}
+			RESULT = t;
+		:}
+		|simple_var_call:t{:
+			SymbolTableManager.removeContext(true);
+			RESULT = t;
+		:};
+
+method_call ::= call_list:types DOT simple_method_call:t{:
+			SymbolTableManager.removeContext(true);
+			while(!types.isEmpty()){
+				types.pop();
+				SymbolTableManager.removeContext(true);
+			}
+			RESULT = t;
+		:}
+		|simple_method_call:t{:
+			SymbolTableManager.removeContext(true);
+			RESULT = t;
+		:};
+
+simple_var_call ::= ID:id list_dim_array{:
+		if(SymbolTableManager.getCurrentContext(true)==null)
+			SymbolTableManager.setContext(SymbolTableManager.getCurrentContext(),true);
+		if(SymbolTableManager.symbolExist(id,true)){
+			Sym s = SymbolTableManager.getSymbol(id,true);
+			if(s.getType().getSubtype()!=null){
+				Type t = s.getType().getSubtype();
+				SymbolTableManager.setContext(t,true);
+				RESULT = t;
+			}else{
+				ErrorManager.add(id,idright,idleft,id + " no es un arreglo",Err.SEMANTIC);
+				SymbolTableManager.setContext(new Type("null"),true);
+				RESULT = null;
+			}
+		}else{
+			SymbolTableManager.setContext(new Type("null"),true);
+			ErrorManager.add(id,idright,idleft,"Variable " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			RESULT = null;
+		}
+	:}
+	|ID:id {:
+		if(SymbolTableManager.getCurrentContext(true)==null)
+			SymbolTableManager.setContext(SymbolTableManager.getCurrentContext(),true);
+		if(SymbolTableManager.symbolExist(id,true)){
+			Sym s = SymbolTableManager.getSymbol(id,true);
+			Type t = s.getType();
+			SymbolTableManager.setContext(t,true);
+			RESULT = t;
+		}else{
+			SymbolTableManager.setContext(new Type("null"),true);
+			ErrorManager.add(id,idright,idleft,"Variable " + id + " no existe en el contexto actual",Err.SEMANTIC);
+			RESULT = null;
+		}
+	:};
+		
+call_list ::= call_list:types DOT simple_call:t{:
+		types.push(t);
+		RESULT = types;
+	:}
+		|simple_call:t{:
+			Stack<Type> types = new Stack<>();
+			types.push(t);
+			RESULT = types;
+		:};
+
+simple_call ::=  simple_var_call:t 	{:RESULT = t;:}
+		|simple_method_call:t		{:RESULT = t;:};
+
+		
+cast_value ::= LPAREN prim_type:t RPAREN expression:e1{:
+	if(t!=null&&e1!=null){
+		RESULT = e1.cast(t,tright,tleft);
+	}else{
+		ErrorManager.add("("+t+")",tright, tleft, "Tipos de datos incompatibles ("+t+")["+e1+"]",Err.SEMANTIC);
+	}
+:};
+
+visibility::= PUBLIC  
+			| PRIVATE 	
+			|;
+
+is_static::= STATIC	
+		|;
+new_line::= NEWLINE
+		|;
+
+/*-----------------------------------FIN DEL ARCHIVO*---------------------------------------*/

@@ -1,0 +1,8 @@
+public class Herencia{
+	public float xp1
+ 	public float yp1
+ 	public float xp2
+ 	public float yp2
+ 	public float sin60
+ 	public int nivel_de_recursividad 
+}

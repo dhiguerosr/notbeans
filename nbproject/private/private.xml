@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/parsers/frc/tc/Parser.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>1221</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/Bloque.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/notbeans/NotBeans.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/Assign.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/.git/config</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/ts/parser.cup</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/Executer.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/managers/TypeTable.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/sym.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/expressions/ArrayItemCall.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/managers/Sym.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/ID.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/expressions/Cast.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/managers/SymbolTable.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/expressions/Ask.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/statements/While.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/statements/Assign.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/Canvas.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/Value.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/managers/SymbolTableManager.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/statements/Return.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/CodeManager.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/gui/forms/NewMainFrame.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/MethodCall.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/Node.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/parser.cup</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/tc/Parser.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/Method.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/Operation.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/statements/Switch.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/frc/managers/Type.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/parsers/tree3d/nodes/arithmetics/Add.java</file>
+            <file>file:/C:/Users/DENNIS/Documents/NetBeansProjects/NotBeans/src/jbc/parser/nodes/IfGoto.java</file>
+        </group>
+    </open-files>
+</project-private>

@@ -1,0 +1,535 @@
+package parsers.frc.ts;
+
+import java.util.Stack;
+import java_cup.runtime.Symbol;
+import parsers.frc.managers.*;
+
+parser code
+{:
+    
+
+    /**Metodo al que se llama automaticamente ante algun error sintactico.*/
+    public void syntax_error(Symbol s){
+		//ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+		//ErrorManager.setDesc("");
+        System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+        
+    }
+   
+
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+		//ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+		//ErrorManager.setDesc("");
+		System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    }
+
+:}
+action code
+{:
+	
+:}
+
+/*Declaracion de simbolos terminales*/
+terminal FILE;
+terminal IMPORT;
+terminal PUBLIC;
+terminal PRIVATE;
+terminal VOID;
+terminal ARRAY;
+terminal SWITCH;
+terminal CASE;
+terminal BREAK;
+terminal DEFAULT;
+terminal IF;
+terminal ELSE;
+terminal CONTINUE;
+terminal FOR;
+terminal DO;
+terminal WHILE;
+terminal NEW;
+terminal INT;
+terminal FLOAT;
+terminal BOOL;
+terminal STRING;
+terminal CHAR;
+terminal LINEA;
+terminal TEXTO;
+terminal ARC0;
+terminal RECTANGULO;
+terminal OVALO;
+terminal POLIGONO;
+terminal LIENZO;
+terminal IMPRIMIR;
+terminal SHARP;
+terminal LESS;
+terminal GREATER;
+terminal DOT;
+terminal LPAREN;
+terminal RPAREN;
+terminal LBRACKET;
+terminal RBRACKET;
+terminal EQL;
+terminal PLUS;
+terminal MINUS;
+terminal UMINUS;
+terminal DIV;
+terminal TIMES;
+terminal REF;
+terminal COMA;
+terminal LHOOK;
+terminal RHOOK;
+terminal PLUSPLUS;
+terminal MINUSMINUS;
+terminal POW;
+terminal PLUSEQUALS;
+terminal MINUSEQUALS;
+terminal TIMESEQUALS;
+terminal DIVEQUALS;
+terminal AND;
+terminal OR;
+terminal NOT;
+terminal EQUALS;
+terminal NOTEQL;
+terminal GEQL;
+terminal LEQL;
+terminal ASK;
+terminal COLON;
+terminal TRUE;
+terminal FALSE;
+terminal NULL;
+terminal THIS;
+terminal RETURN;
+terminal CLASS;
+terminal EXTENDS;
+terminal STATIC;
+terminal String ID;
+terminal CAD;
+terminal CHR;
+terminal NUM;
+terminal DEC;
+terminal NEWLINE;
+
+
+/*Declaracion de simbolos NO terminales*/
+non terminal program;
+non terminal init_import;
+non terminal list_import;
+non terminal dec_import;
+
+non terminal init_class;
+non terminal class_body;
+non terminal list_class_expr;
+non terminal new_line;
+non terminal Integer visibility;
+
+non terminal Boolean is_static;
+non terminal method_var_dec;
+non terminal declaration;
+non terminal var_dec;
+non terminal String prim_type;
+non terminal String var_type;
+non terminal var_list;
+non terminal String array_type;
+non terminal Stack<Sym> method_dec;
+non terminal Stack<Sym> params;
+non terminal Stack<Sym> list_params;
+non terminal Sym param;
+
+non terminal method_instructions;
+non terminal method_list_instructions;
+non terminal instruction;
+
+non terminal assign;
+non terminal assign_op;
+non terminal list_dim_array;
+non terminal dim;
+non terminal expression;
+
+non terminal while_statement;
+non terminal do_while_statement;
+non terminal for_statement;
+non terminal for_init;
+non terminal if_statement;
+non terminal switch_statement;
+non terminal list_case;
+non terminal case_sentence;
+non terminal loop_inst;
+non terminal loop_inst_list;
+non terminal loop_instructions;
+
+non terminal op_ternario;
+non terminal logic_expression;
+non terminal arit_expression;
+non terminal instance;
+non terminal method_call;
+non terminal cast_value;
+non terminal var_call;
+non terminal var_dec_assign;
+non terminal value;
+non terminal args;
+non terminal arg_list;
+non terminal simple_call;
+non terminal simple_var_call;
+non terminal simple_method_call;
+non terminal call_list;
+
+/*PRECEDENCES*/
+
+precedence left OR;
+precedence left AND;
+precedence left NOT;
+precedence left EQUALS;
+precedence left NOTEQL;
+precedence left GEQL;
+precedence left LEQL;
+precedence left GREATER;
+precedence left LESS;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIV;
+precedence left POW;
+precedence left UMINUS;
+
+precedence left ELSE;
+
+/*GRAMMAR START*/
+start with program;
+
+program::= NEWLINE init_import
+	|init_import;
+
+init_import::= list_import init_class
+	|init_class;
+
+list_import::= dec_import NEWLINE list_import
+	|dec_import
+	|error NEWLINE list_import;
+
+
+dec_import::= SHARP IMPORT FILE;										
+
+
+init_class::=PUBLIC CLASS ID:id 
+	{:
+		Type t = new Type(id);
+		if(SymbolTableManager.addType(t)){
+			System.out.println("Context changed to " + id + "class...");
+			SymbolTableManager.setCurrentContext(t);
+		}else{
+			System.out.println("Error: type " + id + "already defined");
+		}
+	:} EXTENDS ID new_line LBRACKET class_body //declaración de clase con herencia
+	{:
+		
+	:}
+	
+	| PUBLIC CLASS ID:id
+	{:
+		Type t = new Type(id);
+		if(SymbolTableManager.addType(t)){
+			System.out.println("Context changed to " + id + "class...");
+			SymbolTableManager.setCurrentContext(t);
+		}else{
+			System.out.println("Error: type " + id + "already defined");
+		}
+	:}			new_line LBRACKET class_body
+	{:
+		System.out.println("Clase reducida ID=" + id);
+	:};						//declaración de clase sin herencia
+	
+
+class_body::= new_line list_class_expr RBRACKET new_line									//cuerpo de clase / fin de clase
+			|new_line RBRACKET new_line;												//fin de clase 
+
+list_class_expr::= declaration NEWLINE list_class_expr
+			|declaration
+			|error NEWLINE list_class_expr;				
+
+declaration::= //visibility STATIC var_type ID method_var_dec 					//variable/metodo estatico (tipo primitivo)
+					 					//metodo estatico (devuelve void)
+			//|visibility var_type ID method_var_dec			 					//variable/metodo no estatica (tipo primitivo)
+			visibility is_static var_type:type ID:id COMA var_list var_dec_assign
+			|visibility is_static var_type:type ID:id var_dec_assign
+			|visibility is_static var_type:type ID:id method_dec
+			
+			//|visibility ID:type ID:id method_var_dec				 					//variable/metodo no estatico(tipo objeto)
+			|visibility is_static ID:type ID:id COMA var_list var_dec_assign
+			|visibility is_static ID:type ID:id var_dec_assign
+			|visibility:access is_static:_s ID:type ID:id method_dec:p
+			{:
+				Stack<Sym> syms = new Stack<>();
+				if(SymbolTableManager.typeExist(type)){
+					Sym s = new Sym(id,p,SymbolTableManager.getType(type));
+					s.setAccessType(access);
+					s.setStatic(_s);
+					syms.add(s);
+				}
+				RESULT = syms;
+			:}
+			|visibility:access is_static:_s VOID ID:id method_dec:p					 					//metodo no estatico (devuelve void)
+			{:
+				Stack<Sym> syms = new Stack<>();
+				Sym s = new Sym(id,p,null);
+				s.setAccessType(access);
+				s.setStatic(_s);
+				syms.add(s);
+				RESULT = syms;
+			:}
+			|visibility:access is_static:_s ID:id method_dec:p								//constructor
+			{:
+				Stack<Sym> syms = new Stack<>();
+				Sym s = new Sym(id,p);
+				s.setAccessType(access);
+				s.setStatic(_s);
+				syms.add(s);
+				RESULT = syms;
+			:};
+
+/*method_var_dec::= COMA var_list	var_dec_assign	 					//declaración de múltiples variables;
+			|var_dec_assign						 					//declaración de variable úniva;
+			|method_dec;						 					//declaración de metodo;*/
+			
+
+method_dec::= LPAREN params:p RPAREN new_line LBRACKET new_line method_instructions RBRACKET {:RESULT = p;:};
+
+method_instructions::= method_list_instructions
+			|;
+
+method_list_instructions::= instruction NEWLINE method_list_instructions
+			|instruction NEWLINE
+			|error NEWLINE method_instructions;
+
+params::= list_params:syms 	{:RESULT = syms;:}		
+		|					{:RESULT = new Stack<>();:};
+		
+list_params ::= param:p COMA list_params:syms
+		{:
+			if(p!=null)
+				syms.add(p);
+			RESULT = syms;
+		:}
+		|param:p 
+		{:
+			Stack<Sym> syms = new Stack<>();
+			if(p!=null)
+				syms.add(p);
+			RESULT = syms;
+		:};
+
+param::= REF prim_type:type ID:id
+		{:
+			Sym s = new Sym();
+			s.setName(id);
+			s.setReference(true);
+			if(SymbolTableManager.typeExist(type)){
+				s.setType(SymbolTableManager.getType(type));
+				RESULT = s;
+			}else{
+				System.out.println("Error: undefined type");
+				RESULT = null;
+			}
+		:}
+		|var_type:type ID:id 
+		{:
+			Sym s = new Sym();
+			s.setName(id);
+			if(SymbolTableManager.typeExist(type)){
+				s.setType(SymbolTableManager.getType(type));
+				RESULT = s;
+			}else{
+				System.out.println("Error: undefined type");
+				RESULT = null;
+			}
+		:}
+		|ID:type ID:id
+		{:
+			Sym s = new Sym();
+			s.setName(id);
+			if(SymbolTableManager.typeExist(type)){
+				s.setType(SymbolTableManager.getType(type));
+				RESULT = s;
+			}else{
+				System.out.println("Error: undefined type");
+				RESULT = null;
+			}
+			
+		:};
+
+var_dec_assign ::= EQL expression
+				|;
+
+
+var_type::= prim_type:type			{:RESULT = type;:}	
+			| array_type:type 		{:RESULT = type;:};
+			
+prim_type::= INT 		{:RESULT = "int";:}
+			| FLOAT		{:RESULT = "float";:}
+			| BOOL		{:RESULT = "bool";:}
+			| STRING 	{:RESULT = "string";:}
+			| CHAR		{:RESULT = "char";:};
+			
+array_type::= ARRAY LESS var_type:type GREATER 	{:RESULT = type;:} 
+			| ARRAY LESS ID:type GREATER  		{:RESULT = type;:};
+
+var_list::= ID COMA var_list
+			| ID;
+
+
+value::= NUM
+		|DEC
+		|CAD
+		|CHR
+		|TRUE
+		|FALSE;
+
+instruction::= assign
+		|var_dec
+		|while_statement
+		|do_while_statement
+		|for_statement
+		|if_statement
+		|switch_statement
+		|method_call
+		|BREAK
+		|CONTINUE
+		|RETURN expression
+		|RETURN
+		|TEXTO LPAREN arg_list RPAREN
+		|LIENZO LPAREN arg_list RPAREN
+		|IMPRIMIR LPAREN arg_list RPAREN
+		|OVALO LPAREN arg_list RPAREN
+		|LINEA LPAREN arg_list RPAREN
+		|POLIGONO LPAREN arg_list RPAREN
+		|RECTANGULO LPAREN arg_list RPAREN
+		|ARC0 LPAREN arg_list RPAREN;
+		
+assign::= var_call assign_op expression
+		|var_call PLUSPLUS
+		|var_call MINUSMINUS;
+
+list_dim_array::= dim list_dim_array
+		|dim;
+		
+dim::= LHOOK expression RHOOK;
+
+var_dec::= var_type var_list EQL expression
+		|ID var_list EQL expression
+		|var_type var_list EQL
+		|ID var_list;
+
+
+assign_op::= EQL
+		|PLUSEQUALS
+		|MINUSEQUALS
+		|TIMESEQUALS
+		|DIVEQUALS;
+
+while_statement::= WHILE LPAREN expression RPAREN loop_instructions;
+
+do_while_statement::= DO new_line LBRACKET new_line loop_inst RBRACKET new_line WHILE LPAREN expression RPAREN;
+		//|DO NEWLINE loop_inst WHILE LPAREN expression RPAREN;
+ 
+for_statement::= FOR LPAREN for_init COMA expression COMA assign RPAREN loop_instructions;
+
+for_init::= var_type assign
+		| ID assign
+		| assign;
+
+loop_instructions::= new_line LBRACKET new_line loop_inst RBRACKET
+	|new_line instruction;
+
+loop_inst::= loop_inst_list
+	|;
+	
+loop_inst_list::= instruction NEWLINE loop_inst_list
+	| instruction NEWLINE
+	| error NEWLINE loop_inst_list;
+
+
+if_statement::= IF LPAREN expression RPAREN loop_instructions ELSE loop_instructions
+	|IF LPAREN expression RPAREN loop_instructions;
+	
+switch_statement::= SWITCH LPAREN var_call RPAREN new_line LBRACKET NEWLINE list_case RBRACKET;			//definir var_call
+
+list_case::= case_sentence list_case
+	|case_sentence;
+
+case_sentence::= CASE value COLON NEWLINE loop_inst_list
+				|DEFAULT COLON NEWLINE loop_inst_list;
+
+expression::= op_ternario
+		|logic_expression
+		|arit_expression
+		|instance
+		|value
+		|cast_value
+		|var_call 
+		|method_call
+		|NULL;
+		
+logic_expression::= expression OR expression
+		|expression AND expression
+		|NOT expression
+		|expression EQUALS expression
+		|expression NOTEQL expression
+		|expression GEQL expression
+		|expression GREATER expression
+		|expression LEQL expression
+		|expression LESS expression;
+
+arit_expression::= expression PLUS expression
+		|expression MINUS expression
+		|expression TIMES expression
+		|expression DIV expression
+		|expression POW expression
+		|LPAREN expression RPAREN
+		|MINUS expression {::}%prec UMINUS;
+		
+op_ternario::= LPAREN expression RPAREN ASK LBRACKET expression RBRACKET  COLON LBRACKET expression RBRACKET
+			| LPAREN expression RPAREN ASK  expression  COLON  expression;
+
+instance ::= NEW method_call					//el metodo debe ser un constructor
+			|NEW ARRAY LPAREN arg_list RPAREN;  //la lista de argumentos deben ser números enteros
+			
+simple_method_call::= ID LPAREN arg_list RPAREN;
+		
+arg_list::= args
+		|;
+
+args::= expression COMA args
+		|expression;
+
+
+var_call ::= THIS DOT call_list DOT simple_var_call
+		|call_list DOT simple_var_call
+		|THIS DOT simple_var_call
+		|simple_var_call;
+
+method_call ::= THIS DOT call_list DOT simple_method_call
+		|call_list DOT simple_method_call
+		|THIS DOT simple_method_call
+		|simple_method_call;
+
+simple_var_call ::= ID list_dim_array
+		|ID;
+		
+call_list ::= call_list DOT simple_call
+		|simple_call;
+
+simple_call ::=  simple_var_call
+		|simple_method_call;
+
+		
+cast_value ::= LPAREN prim_type RPAREN expression;
+
+visibility::= PUBLIC  	{:RESULT = Sym.PUBLIC_ACCESS;:}
+			| PRIVATE 	{:RESULT = Sym.PRIVATE_ACCESS;:}
+			|		   	{:RESULT = Sym.PRIVATE_ACCESS;:};
+
+is_static::= STATIC		{:RESULT = true;:}
+		|				{:RESULT = false;:};
+new_line::= NEWLINE
+		|;
+
+/*-----------------------------------FIN DEL ARCHIVO*---------------------------------------*/

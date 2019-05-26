@@ -1,0 +1,125 @@
+package Painter;
+
+import Analizers.Err;
+import java_cup.runtime.*;
+import Clases.*;
+import Clases.LogicOperators.*;
+import Clases.Functions.*;
+import Clases.Control.*;
+import genmaps.GenMaps;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+import Analizers.ErrorManager;
+
+
+parser code
+{:
+    
+
+    /**Metodo al que se llama automaticamente ante algun error sintactico.*/
+    public void syntax_error(Symbol s){
+	ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+	ErrorManager.setDesc("");
+        //System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+        /*if(s.value!=null)
+            addLista(new Token(s.right,s.left,s.value.toString()));*/
+    }
+    /*private void addLista(Token error){
+        //DrawABit.sintacticos.add(error);
+    } */
+
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+	 
+        //System.out.println("Error Sintactico No Recuperable-> Lexema: " +s.value+" Linea: "+s.right+ " Columna: "+s.left);
+        /*if(s.value!=null)
+            addLista(new Token(s.right,s.left,s.value.toString()));*/
+    }
+
+:}
+action code
+{:
+:}
+/*Comentarios*/
+terminal COMENT;
+/*Declaracion de simbolos terminales*/
+terminal PUNTO;
+terminal P_COMA;
+terminal COMA;
+terminal DOS_P;
+terminal ABRE_C;
+terminal CIERRA_C;
+terminal ABRE_P;
+terminal CIERRA_P;
+terminal ABRE_L;
+terminal CIERRA_L;
+
+/*operadores*/
+terminal IGUAL;
+terminal NO_IGUAL;
+terminal MAYOR_IG;
+terminal MENOR_IG;
+terminal MAYOR;
+terminal MENOR;
+terminal S_IGUAL;
+terminal S_SUMA;
+terminal S_RESTA;
+terminal S_MENOS;
+terminal S_MULTI;
+terminal S_DIV;
+terminal S_CONCAT;
+terminal OR;
+terminal AND;
+terminal NOT;
+
+/*valores*/
+terminal CADENA;
+terminal CARACTER;
+terminal DEC;
+terminal NUM; 
+terminal TRUE;
+terminal FALSE;
+terminal NULL;
+terminal VOID;
+terminal String ID;
+
+/* reservadas */
+terminal USE;
+terminal AS;
+terminal VAR;
+terminal PASAR_ENTERO;
+terminal PASAR_FLOAT;
+terminal PASAR_STRING;
+terminal IMPRIMIR;
+terminal CALL;
+terminal THIS;
+terminal VALUE;
+terminal MINUS;
+terminal MAYUS;
+
+/*tipos*/
+terminal INT;
+terminal CHAR;
+terminal FLOAT;
+terminal BOOL;
+terminal STRING;
+
+/*sentencias*/
+terminal IF;
+terminal ELSE;
+terminal FOR;
+terminal WHILE;
+terminal SWITCH;
+terminal CASE;
+terminal BREAK;
+terminal DEFAULT;
+terminal RETURN;
+terminal ERROR;
+terminal E_BLANCO;
+
+non terminal inicio;
+start with inicio;
+
+inicio::=;

@@ -1,0 +1,485 @@
+digraph g {
+rankdir = "TB";subgraph cluster1 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_fibonacci_int" [ label = "{<f0> Sierpinski_fibonacci_int|t1497 = H;|H = H + 7.0;|heap[t1497] = 6.0;|t1498 = t1497 + 1.0;|heap[t1498] = 32.0;|t1499 = t1497 + 2.0;|heap[t1499] = 61.0;|t1500 = t1497 + 3.0;|heap[t1500] = 32.0;|t1501 = t1497 + 4.0;|heap[t1501] = 123.0;|t1502 = t1497 + 5.0;|heap[t1502] = 32.0;|t1503 = t1497 + 6.0;|heap[t1503] = 49.0;|t1504 = P;|t1505 = t1504 + 3.0;|stack[t1505] = t1497;|t1507 = t1504 + 4.0;|stack[t1507] = 1.0;|t1509 = t1504 + 5.0;|stack[t1509] = 0.0;|t1511 = t1504 + 6.0;|stack[t1511] = 0.0;|<f1> }" shape = "record"];
+"nodeSierpinski_fibonacci_int24" [ label = "{<f0> Sierpinski_fibonacci_int24|L82:|P = P + 7.0;|t1512 = P - 7.0;|t1513 = t1512 + 4.0;|t1514 = stack[t1513];|t1516 = t1512 + 6.0;|t1517 = stack[t1516];|t1518 = t1514 + t1517;|t1520 = t1512 + 5.0;|stack[t1520] = t1518;|t1522 = t1512 + 3.0;|t1523 = stack[t1522];|t1524 = t1497;|H = H + 3.0;|heap[t1524] = 2.0;|t1525 = t1498;|heap[t1525] = 44.0;|t1526 = t1499;|heap[t1526] = 32.0;|t1527 = t1523 strcat t1524;|t1529 = t1520;|t1530 = stack[t1529];|t1531 = int_to_string t1530;|t1532 = t1527 strcat t1531;|t1534 = t1522;|stack[t1534] = t1532;|t1536 = t1513;|t1537 = stack[t1536];|t1539 = t1516;|stack[t1539] = t1537;|t1541 = t1520;|t1542 = stack[t1541];|t1544 = t1513;|stack[t1544] = t1542;|P = P - 7.0;|t1545 = t1504;|t1546 = t1545 + 5.0;|t1547 = stack[t1546];|t1549 = t1545;|t1550 = stack[t1549];|if t1547 < t1550 then goto L84;|<f1> }" shape = "record"];
+"nodeSierpinski_fibonacci_int67" [ label = "{<f0> Sierpinski_fibonacci_int67|L83:|t1553 = t1504 + 3.0;|t1554 = stack[t1553];|t1555 = t1497;|H = H + 2.0;|heap[t1555] = 1.0;|t1556 = t1498;|heap[t1556] = 125.0;|t1557 = t1554 strcat t1555;|t1559 = t1504 + 2.0;|stack[t1559] = t1557;|goto L81;|<f1> }" shape = "record"];
+"nodeSierpinski_fibonacci_int78" [ label = "{<f0> Sierpinski_fibonacci_int78|L81:|<f1> }" shape = "record"];
+"nodeSierpinski_fibonacci_int66" [ label = "{<f0> Sierpinski_fibonacci_int66|goto L83;|<f1> }" shape = "record"];
+"nodeSierpinski_fibonacci_int65" [ label = "{<f0> Sierpinski_fibonacci_int65|L85:|if 1.0 == 1.0 then goto L82;|<f1> }" shape = "record"];
+"nodeSierpinski_fibonacci_int64" [ label = "{<f0> Sierpinski_fibonacci_int64|goto L85;|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_fibonacci_int";}
+subgraph cluster2 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_factorialRecursivo_int42" [ label = "{<f0> Sierpinski_factorialRecursivo_int42|L75:|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int6" [ label = "{<f0> Sierpinski_factorialRecursivo_int6|goto L79;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int" [ label = "{<f0> Sierpinski_factorialRecursivo_int|t1468 = P;|t1469 = t1468;|t1470 = stack[t1469];|if t1470 < 1.0 then goto L76;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int5" [ label = "{<f0> Sierpinski_factorialRecursivo_int5|L77:|if 1.0 == 1.0 then goto L78;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int4" [ label = "{<f0> Sierpinski_factorialRecursivo_int4|goto L77;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int7" [ label = "{<f0> Sierpinski_factorialRecursivo_int7|L78:|P = P + 4.0;|t1472 = P - 4.0;|t1473 = t1472 + 3.0;|stack[t1473] = 1.0;|P = P - 4.0;|goto L80;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int26" [ label = "{<f0> Sierpinski_factorialRecursivo_int26|t1484 = P + 2.0;|t1485 = stack[t1484];|P = P;|t1487 = t1472;|t1488 = stack[t1487];|t1489 = t1485 * t1488;|t1491 = t1473;|stack[t1491] = t1489;|P = P - 4.0;|goto L80;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int36" [ label = "{<f0> Sierpinski_factorialRecursivo_int36|L80:|t1492 = t1481;|t1493 = t1492 + 3.0;|t1494 = stack[t1493];|t1496 = t1492 + 2.0;|stack[t1496] = t1494;|goto L75;|<f1> }" shape = "record"];
+"nodeSierpinski_factorialRecursivo_int13" [ label = "{<f0> Sierpinski_factorialRecursivo_int13|L79:|P = P + 4.0;|t1475 = t1472 + 1.0;|t1476 = stack[t1475];|t1478 = t1472;|t1479 = stack[t1478];|t1480 = t1479 - 1.0;|t1481 = t1468;|t1482 = t1481;|stack[t1482] = t1480;|t1483 = t1481 + 1.0;|stack[t1483] = t1476;|P = P;|call Sierpinski_factorialRecursivo_int();|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_factorialRecursivo_int";}
+subgraph cluster3 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_factorial_int9" [ label = "{<f0> Sierpinski_factorial_int9|L67:|P = P + 4.0;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int7" [ label = "{<f0> Sierpinski_factorial_int7|L66:|if 1.0 == 1.0 then goto L67;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int8" [ label = "{<f0> Sierpinski_factorial_int8|goto L68;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int6" [ label = "{<f0> Sierpinski_factorial_int6|goto L66;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int14" [ label = "{<f0> Sierpinski_factorial_int14|goto L74;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int15" [ label = "{<f0> Sierpinski_factorial_int15|L74:|if 1.0 == 1.0 then goto L71;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int16" [ label = "{<f0> Sierpinski_factorial_int16|goto L72;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int17" [ label = "{<f0> Sierpinski_factorial_int17|L71:|P = P;|t1449 = t1444 + 3.0;|t1450 = stack[t1449];|t1452 = t1444;|t1453 = stack[t1452];|t1454 = t1450 * t1453;|t1456 = t1449;|stack[t1456] = t1454;|t1458 = t1444;|t1459 = stack[t1458];|t1460 = t1459 - 1.0;|t1462 = t1444;|stack[t1462] = t1460;|P = P;|goto L70;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int10" [ label = "{<f0> Sierpinski_factorial_int10|L70:|t1444 = P - 4.0;|t1445 = t1444;|t1446 = stack[t1445];|if t1446 > 0.0 then goto L73;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int32" [ label = "{<f0> Sierpinski_factorial_int32|L72:|P = P;|P = P - 4.0;|goto L69;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int" [ label = "{<f0> Sierpinski_factorial_int|t1438 = P;|t1439 = t1438 + 3.0;|stack[t1439] = 1.0;|t1441 = t1438;|t1442 = stack[t1441];|if t1442 > 0.0 then goto L65;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int35" [ label = "{<f0> Sierpinski_factorial_int35|L69:|t1463 = t1438;|t1464 = t1463 + 3.0;|t1465 = stack[t1464];|t1467 = t1463 + 2.0;|stack[t1467] = t1465;|goto L64;|<f1> }" shape = "record"];
+"nodeSierpinski_factorial_int41" [ label = "{<f0> Sierpinski_factorial_int41|L64:|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_factorial_int";}
+subgraph cluster4 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_pruebaFor159" [ label = "{<f0> Sierpinski_pruebaFor159|L52:|if 1.0 == 1.0 then goto L54;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor158" [ label = "{<f0> Sierpinski_pruebaFor158|goto L52;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor336" [ label = "{<f0> Sierpinski_pruebaFor336|P = P - 1.0;|t1433 = t1334;|t1434 = stack[t1433];|t1435 = t1434 + 1.0;|t1437 = t1334;|stack[t1437] = t1435;|goto L32;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor331" [ label = "{<f0> Sierpinski_pruebaFor331|L63:|t1430 = P + 1.0;|t1431 = t1430;|stack[t1431] = t1261;|P = P + 1.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor330" [ label = "{<f0> Sierpinski_pruebaFor330|L61:|goto L63;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor157" [ label = "{<f0> Sierpinski_pruebaFor157|L51:|if 1.0 == 1.0 then goto L54;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor156" [ label = "{<f0> Sierpinski_pruebaFor156|goto L51;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor153" [ label = "{<f0> Sierpinski_pruebaFor153|L49:|t1341 = t1334;|t1342 = stack[t1341];|if t1342 < 5.0 then goto L50;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor152" [ label = "{<f0> Sierpinski_pruebaFor152|goto L49;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor270" [ label = "{<f0> Sierpinski_pruebaFor270|L60:|t1401 = t1261;|H = H + 18.0;|heap[t1401] = 17.0;|t1402 = t1262;|heap[t1402] = 83.0;|t1403 = t1263;|heap[t1403] = 101.0;|t1404 = t1264;|heap[t1404] = 32.0;|t1405 = t1265;|heap[t1405] = 97.0;|t1406 = t1266;|heap[t1406] = 99.0;|t1407 = t1267;|heap[t1407] = 97.0;|t1408 = t1268;|heap[t1408] = 98.0;|t1409 = t1269;|heap[t1409] = 111.0;|t1410 = t1270;|heap[t1410] = 32.0;|t1411 = t1271;|heap[t1411] = 101.0;|t1412 = t1272;|heap[t1412] = 108.0;|t1413 = t1273;|heap[t1413] = 32.0;|t1414 = t1308;|heap[t1414] = 99.0;|t1415 = t1309;|heap[t1415] = 105.0;|t1416 = t1310;|heap[t1416] = 99.0;|t1417 = t1311;|heap[t1417] = 108.0;|t1418 = t1312;|heap[t1418] = 111.0;|t1419 = t1261;|H = H + 10.0;|heap[t1419] = 9.0;|t1420 = t1402;|heap[t1420] = 83.0;|t1421 = t1403;|heap[t1421] = 105.0;|t1422 = t1404;|heap[t1422] = 103.0;|t1423 = t1405;|heap[t1423] = 117.0;|t1424 = t1406;|heap[t1424] = 105.0;|t1425 = t1407;|heap[t1425] = 101.0;|t1426 = t1408;|heap[t1426] = 110.0;|t1427 = t1409;|heap[t1427] = 116.0;|t1428 = t1410;|heap[t1428] = 101.0;|if 1.0 == 1.0 then goto L61;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor50" [ label = "{<f0> Sierpinski_pruebaFor50|goto L40;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor32" [ label = "{<f0> Sierpinski_pruebaFor32|P = P - 2.0;|P = P + 2.0;|t1276 = P;|t1277 = t1276;|stack[t1277] = 0.0;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor54" [ label = "{<f0> Sierpinski_pruebaFor54|goto L43;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor53" [ label = "{<f0> Sierpinski_pruebaFor53|L41:|if 1.0 == 1.0 then goto L42;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor52" [ label = "{<f0> Sierpinski_pruebaFor52|goto L43;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor" [ label = "{<f0> Sierpinski_pruebaFor|t1261 = H;|H = H + 13.0;|heap[t1261] = 12.0;|t1262 = t1261 + 1.0;|heap[t1262] = 73.0;|t1263 = t1261 + 2.0;|heap[t1263] = 110.0;|t1264 = t1261 + 3.0;|heap[t1264] = 105.0;|t1265 = t1261 + 4.0;|heap[t1265] = 99.0;|t1266 = t1261 + 5.0;|heap[t1266] = 105.0;|t1267 = t1261 + 6.0;|heap[t1267] = 97.0;|t1268 = t1261 + 7.0;|heap[t1268] = 32.0;|t1269 = t1261 + 8.0;|heap[t1269] = 99.0;|t1270 = t1261 + 9.0;|heap[t1270] = 105.0;|t1271 = t1261 + 10.0;|heap[t1271] = 99.0;|t1272 = t1261 + 11.0;|heap[t1272] = 108.0;|t1273 = t1261 + 12.0;|heap[t1273] = 111.0;|t1274 = P + 2.0;|t1275 = t1274;|stack[t1275] = t1261;|P = P + 2.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor51" [ label = "{<f0> Sierpinski_pruebaFor51|L40:|if 1.0 == 1.0 then goto L41;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor58" [ label = "{<f0> Sierpinski_pruebaFor58|L45:|P = P + 1.0;|t1291 = P - 1.0;|t1292 = t1291;|t1293 = stack[t1292];|t1294 = int_to_string t1293;|t1295 = t1261;|H = H + 38.0;|heap[t1295] = 37.0;|t1296 = t1262;|heap[t1296] = 32.0;|t1297 = t1263;|heap[t1297] = 101.0;|t1298 = t1264;|heap[t1298] = 115.0;|t1299 = t1265;|heap[t1299] = 32.0;|t1300 = t1266;|heap[t1300] = 109.0;|t1301 = t1267;|heap[t1301] = 97.0;|t1302 = t1268;|heap[t1302] = 121.0;|t1303 = t1269;|heap[t1303] = 111.0;|t1304 = t1270;|heap[t1304] = 114.0;|t1305 = t1271;|heap[t1305] = 32.0;|t1306 = t1272;|heap[t1306] = 113.0;|t1307 = t1273;|heap[t1307] = 117.0;|t1308 = t1261 + 13.0;|heap[t1308] = 101.0;|t1309 = t1261 + 14.0;|heap[t1309] = 32.0;|t1310 = t1261 + 15.0;|heap[t1310] = 53.0;|t1311 = t1261 + 16.0;|heap[t1311] = 32.0;|t1312 = t1261 + 17.0;|heap[t1312] = 121.0;|t1313 = t1261 + 18.0;|heap[t1313] = 32.0;|t1314 = t1261 + 19.0;|heap[t1314] = 109.0;|t1315 = t1261 + 20.0;|heap[t1315] = 101.0;|t1316 = t1261 + 21.0;|heap[t1316] = 110.0;|t1317 = t1261 + 22.0;|heap[t1317] = 111.0;|t1318 = t1261 + 23.0;|heap[t1318] = 114.0;|t1319 = t1261 + 24.0;|heap[t1319] = 32.0;|t1320 = t1261 + 25.0;|heap[t1320] = 111.0;|t1321 = t1261 + 26.0;|heap[t1321] = 32.0;|t1322 = t1261 + 27.0;|heap[t1322] = 105.0;|t1323 = t1261 + 28.0;|heap[t1323] = 103.0;|t1324 = t1261 + 29.0;|heap[t1324] = 117.0;|t1325 = t1261 + 30.0;|heap[t1325] = 97.0;|t1326 = t1261 + 31.0;|heap[t1326] = 108.0;|t1327 = t1261 + 32.0;|heap[t1327] = 32.0;|t1328 = t1261 + 33.0;|heap[t1328] = 113.0;|t1329 = t1261 + 34.0;|heap[t1329] = 117.0;|t1330 = t1261 + 35.0;|heap[t1330] = 101.0;|t1331 = t1261 + 36.0;|heap[t1331] = 32.0;|t1332 = t1261 + 37.0;|heap[t1332] = 57.0;|t1333 = t1294 strcat t1295;|t1334 = t1276;|t1335 = t1334;|stack[t1335] = t1333;|P = P;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor57" [ label = "{<f0> Sierpinski_pruebaFor57|goto L46;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor56" [ label = "{<f0> Sierpinski_pruebaFor56|L44:|if 0.0 == 1.0 then goto L45;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor55" [ label = "{<f0> Sierpinski_pruebaFor55|L42:|goto L44;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor37" [ label = "{<f0> Sierpinski_pruebaFor37|L32:|t1279 = t1276;|t1280 = stack[t1279];|if t1280 < 20.0 then goto L35;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor329" [ label = "{<f0> Sierpinski_pruebaFor329|goto L62;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor269" [ label = "{<f0> Sierpinski_pruebaFor269|goto L60;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor149" [ label = "{<f0> Sierpinski_pruebaFor149|L46:|t1337 = t1334;|t1338 = stack[t1337];|if t1338 == 5.0 then goto L48;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor221" [ label = "{<f0> Sierpinski_pruebaFor221|L57:|P = P + 1.0;|t1375 = t1291;|t1376 = stack[t1375];|t1377 = int_to_string t1376;|t1378 = t1261;|H = H + 16.0;|heap[t1378] = 15.0;|t1379 = t1262;|heap[t1379] = 32.0;|t1380 = t1263;|heap[t1380] = 101.0;|t1381 = t1264;|heap[t1381] = 115.0;|t1382 = t1265;|heap[t1382] = 32.0;|t1383 = t1266;|heap[t1383] = 109.0;|t1384 = t1267;|heap[t1384] = 97.0;|t1385 = t1268;|heap[t1385] = 121.0;|t1386 = t1269;|heap[t1386] = 111.0;|t1387 = t1270;|heap[t1387] = 114.0;|t1388 = t1271;|heap[t1388] = 32.0;|t1389 = t1272;|heap[t1389] = 113.0;|t1390 = t1273;|heap[t1390] = 117.0;|t1391 = t1308;|heap[t1391] = 101.0;|t1392 = t1309;|heap[t1392] = 32.0;|t1393 = t1310;|heap[t1393] = 57.0;|t1394 = t1377 strcat t1378;|t1396 = t1334;|stack[t1396] = t1394;|P = P;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor146" [ label = "{<f0> Sierpinski_pruebaFor146|P = P;|P = P - 1.0;|goto L47;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor344" [ label = "{<f0> Sierpinski_pruebaFor344|L31:|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor266" [ label = "{<f0> Sierpinski_pruebaFor266|L47:|t1398 = t1334;|t1399 = stack[t1398];|if t1399 == 19.0 then goto L59;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor343" [ label = "{<f0> Sierpinski_pruebaFor343|L34:|P = P - 2.0;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor162" [ label = "{<f0> Sierpinski_pruebaFor162|L55:|if 1.0 == 1.0 then goto L56;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor161" [ label = "{<f0> Sierpinski_pruebaFor161|L53:|goto L55;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor164" [ label = "{<f0> Sierpinski_pruebaFor164|L56:|P = P + 1.0;|t1346 = t1291;|t1347 = stack[t1346];|t1348 = int_to_string t1347;|t1349 = t1261;|H = H + 22.0;|heap[t1349] = 21.0;|t1350 = t1262;|heap[t1350] = 32.0;|t1351 = t1263;|heap[t1351] = 101.0;|t1352 = t1264;|heap[t1352] = 115.0;|t1353 = t1265;|heap[t1353] = 32.0;|t1354 = t1266;|heap[t1354] = 105.0;|t1355 = t1267;|heap[t1355] = 103.0;|t1356 = t1268;|heap[t1356] = 117.0;|t1357 = t1269;|heap[t1357] = 97.0;|t1358 = t1270;|heap[t1358] = 108.0;|t1359 = t1271;|heap[t1359] = 32.0;|t1360 = t1272;|heap[t1360] = 111.0;|t1361 = t1273;|heap[t1361] = 32.0;|t1362 = t1308;|heap[t1362] = 109.0;|t1363 = t1309;|heap[t1363] = 101.0;|t1364 = t1310;|heap[t1364] = 110.0;|t1365 = t1311;|heap[t1365] = 111.0;|t1366 = t1312;|heap[t1366] = 114.0;|t1367 = t1313;|heap[t1367] = 32.0;|t1368 = t1314;|heap[t1368] = 97.0;|t1369 = t1315;|heap[t1369] = 32.0;|t1370 = t1316;|heap[t1370] = 53.0;|t1371 = t1348 strcat t1349;|t1373 = t1334;|stack[t1373] = t1371;|P = P;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor263" [ label = "{<f0> Sierpinski_pruebaFor263|P = P;|P = P - 1.0;|goto L58;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor163" [ label = "{<f0> Sierpinski_pruebaFor163|goto L57;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor160" [ label = "{<f0> Sierpinski_pruebaFor160|goto L53;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor43" [ label = "{<f0> Sierpinski_pruebaFor43|L33:|t1283 = t1276;|t1284 = stack[t1283];|if t1284 > 5.0 then goto L37;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor42" [ label = "{<f0> Sierpinski_pruebaFor42|goto L34;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor41" [ label = "{<f0> Sierpinski_pruebaFor41|L36:|if 1.0 == 1.0 then goto L33;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor40" [ label = "{<f0> Sierpinski_pruebaFor40|goto L36;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor47" [ label = "{<f0> Sierpinski_pruebaFor47|L38:|t1287 = t1276;|t1288 = stack[t1287];|if t1288 <= 9.0 then goto L39;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor46" [ label = "{<f0> Sierpinski_pruebaFor46|goto L38;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaFor218" [ label = "{<f0> Sierpinski_pruebaFor218|P = P;|P = P - 1.0;|goto L58;|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_pruebaFor";}
+subgraph cluster5 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_setCanvas_int_int_int_int_int24" [ label = "{<f0> Sierpinski_setCanvas_int_int_int_int_int24|P = P - 7.0;|<f1> }" shape = "record"];
+"nodeSierpinski_setCanvas_int_int_int_int_int25" [ label = "{<f0> Sierpinski_setCanvas_int_int_int_int_int25|L30:|<f1> }" shape = "record"];
+"nodeSierpinski_setCanvas_int_int_int_int_int" [ label = "{<f0> Sierpinski_setCanvas_int_int_int_int_int|t1240 = P;|t1241 = t1240;|t1242 = stack[t1241];|t1244 = t1240 + 1.0;|t1245 = stack[t1244];|t1247 = t1240 + 2.0;|t1248 = stack[t1247];|t1250 = t1240 + 3.0;|t1251 = stack[t1250];|t1253 = t1240 + 4.0;|t1254 = stack[t1253];|t1255 = P + 7.0;|t1256 = t1255;|stack[t1256] = t1242;|t1257 = t1255 + 1.0;|stack[t1257] = t1245;|t1258 = t1255 + 2.0;|stack[t1258] = t1248;|t1259 = t1255 + 3.0;|stack[t1259] = t1251;|t1260 = t1255 + 4.0;|stack[t1260] = t1254;|P = P + 7.0;|call Lienzo_int_int_int_int_int();|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_setCanvas_int_int_int_int_int";}
+subgraph cluster6 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_setCanvas_Canvas" [ label = "{<f0> Sierpinski_setCanvas_Canvas|t1187 = P;|t1188 = t1187;|t1189 = stack[t1188];|t1190 = P + 3.0;|t1191 = t1190;|stack[t1191] = t1189;|P = P + 3.0;|call Canvas_getAlto();|<f1> }" shape = "record"];
+"nodeSierpinski_setCanvas_Canvas61" [ label = "{<f0> Sierpinski_setCanvas_Canvas61|L29:|<f1> }" shape = "record"];
+"nodeSierpinski_setCanvas_Canvas8" [ label = "{<f0> Sierpinski_setCanvas_Canvas8|t1192 = P + 1.0;|t1193 = stack[t1192];|P = P - 3.0;|t1194 = t1187;|t1195 = t1194;|t1196 = stack[t1195];|t1198 = t1190;|stack[t1198] = t1196;|P = P + 3.0;|call Canvas_getAncho();|<f1> }" shape = "record"];
+"nodeSierpinski_setCanvas_Canvas60" [ label = "{<f0> Sierpinski_setCanvas_Canvas60|P = P - 3.0;|<f1> }" shape = "record"];
+"nodeSierpinski_setCanvas_Canvas18" [ label = "{<f0> Sierpinski_setCanvas_Canvas18|t1199 = t1192;|t1200 = stack[t1199];|P = P - 3.0;|t1202 = t1194;|t1203 = stack[t1202];|t1204 = t1203 + 2.0;|t1205 = heap[t1204];|t1206 = heap[t1205];|t1207 = t1206 + 1.0;|t1208 = t1207 + t1205;|t1210 = t1208;|t1211 = heap[t1210];|t1213 = t1194;|t1214 = stack[t1213];|t1215 = t1214 + 2.0;|t1216 = heap[t1215];|t1217 = heap[t1216];|t1218 = t1217 + 1.0;|t1219 = t1218 + t1216;|t1221 = 1.0 + t1219;|t1222 = heap[t1221];|t1224 = t1194;|t1225 = stack[t1224];|t1226 = t1225 + 2.0;|t1227 = heap[t1226];|t1228 = heap[t1227];|t1229 = t1228 + 1.0;|t1230 = t1229 + t1227;|t1232 = 2.0 + t1230;|t1233 = heap[t1232];|t1235 = t1190;|stack[t1235] = t1193;|t1236 = t1190 + 1.0;|stack[t1236] = t1200;|t1237 = t1190 + 2.0;|stack[t1237] = t1211;|t1238 = t1190 + 3.0;|stack[t1238] = t1222;|t1239 = t1190 + 4.0;|stack[t1239] = t1233;|P = P + 3.0;|call Lienzo_int_int_int_int_int();|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_setCanvas_Canvas";}
+subgraph cluster7 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_pruebaSwitch166" [ label = "{<f0> Sierpinski_pruebaSwitch166|L28:|t1146 = t1074;|H = H + 33.0;|heap[t1146] = 32.0;|t1147 = t1075;|heap[t1147] = 80.0;|t1148 = t1076;|heap[t1148] = 114.0;|t1149 = t1077;|heap[t1149] = 117.0;|t1150 = t1078;|heap[t1150] = 101.0;|t1151 = t1079;|heap[t1151] = 98.0;|t1152 = t1080;|heap[t1152] = 97.0;|t1153 = t1081;|heap[t1153] = 32.0;|t1154 = t1082;|heap[t1154] = 115.0;|t1155 = t1083;|heap[t1155] = 119.0;|t1156 = t1084;|heap[t1156] = 105.0;|t1157 = t1085;|heap[t1157] = 116.0;|t1158 = t1086;|heap[t1158] = 99.0;|t1159 = t1087;|heap[t1159] = 104.0;|t1160 = t1088;|heap[t1160] = 32.0;|t1161 = t1089;|heap[t1161] = 45.0;|t1162 = t1090;|heap[t1162] = 32.0;|t1163 = t1091;|heap[t1163] = 69.0;|t1164 = t1092;|heap[t1164] = 110.0;|t1165 = t1093;|heap[t1165] = 116.0;|t1166 = t1094;|heap[t1166] = 114.0;|t1167 = t1095;|heap[t1167] = 97.0;|t1168 = t1096;|heap[t1168] = 32.0;|t1169 = t1097;|heap[t1169] = 101.0;|t1170 = t1098;|heap[t1170] = 110.0;|t1171 = t1099;|heap[t1171] = 32.0;|t1172 = t1100;|heap[t1172] = 100.0;|t1173 = t1101;|heap[t1173] = 101.0;|t1174 = t1102;|heap[t1174] = 102.0;|t1175 = t1103;|heap[t1175] = 97.0;|t1176 = t1104;|heap[t1176] = 117.0;|t1177 = t1105;|heap[t1177] = 108.0;|t1178 = t1074 + 32.0;|heap[t1178] = 116.0;|t1180 = t1106;|stack[t1180] = t1074;|P = P + 1.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch8" [ label = "{<f0> Sierpinski_pruebaSwitch8|goto L19;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch245" [ label = "{<f0> Sierpinski_pruebaSwitch245|L17:|P = P - 2.0;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch246" [ label = "{<f0> Sierpinski_pruebaSwitch246|L14:|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch9" [ label = "{<f0> Sierpinski_pruebaSwitch9|L19:|if 1.0 == 1.0 then goto L16;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch164" [ label = "{<f0> Sierpinski_pruebaSwitch164|P = P - 1.0;|goto L20;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch92" [ label = "{<f0> Sierpinski_pruebaSwitch92|goto L26;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch93" [ label = "{<f0> Sierpinski_pruebaSwitch93|L26:|if 1.0 == 1.0 then goto L27;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch94" [ label = "{<f0> Sierpinski_pruebaSwitch94|goto L28;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch95" [ label = "{<f0> Sierpinski_pruebaSwitch95|L27:|t1112 = t1074;|H = H + 32.0;|heap[t1112] = 31.0;|t1113 = t1075;|heap[t1113] = 80.0;|t1114 = t1076;|heap[t1114] = 114.0;|t1115 = t1077;|heap[t1115] = 117.0;|t1116 = t1078;|heap[t1116] = 101.0;|t1117 = t1079;|heap[t1117] = 98.0;|t1118 = t1080;|heap[t1118] = 97.0;|t1119 = t1081;|heap[t1119] = 32.0;|t1120 = t1082;|heap[t1120] = 115.0;|t1121 = t1083;|heap[t1121] = 119.0;|t1122 = t1084;|heap[t1122] = 105.0;|t1123 = t1085;|heap[t1123] = 116.0;|t1124 = t1086;|heap[t1124] = 99.0;|t1125 = t1087;|heap[t1125] = 104.0;|t1126 = t1088;|heap[t1126] = 32.0;|t1127 = t1089;|heap[t1127] = 45.0;|t1128 = t1090;|heap[t1128] = 32.0;|t1129 = t1091;|heap[t1129] = 69.0;|t1130 = t1092;|heap[t1130] = 110.0;|t1131 = t1093;|heap[t1131] = 116.0;|t1132 = t1094;|heap[t1132] = 114.0;|t1133 = t1095;|heap[t1133] = 97.0;|t1134 = t1096;|heap[t1134] = 32.0;|t1135 = t1097;|heap[t1135] = 101.0;|t1136 = t1098;|heap[t1136] = 110.0;|t1137 = t1099;|heap[t1137] = 32.0;|t1138 = t1100;|heap[t1138] = 99.0;|t1139 = t1101;|heap[t1139] = 97.0;|t1140 = t1102;|heap[t1140] = 115.0;|t1141 = t1103;|heap[t1141] = 101.0;|t1142 = t1104;|heap[t1142] = 32.0;|t1143 = t1105;|heap[t1143] = 50.0;|t1145 = t1106;|stack[t1145] = t1074;|P = P + 1.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch89" [ label = "{<f0> Sierpinski_pruebaSwitch89|L24:|t1109 = t1066;|t1110 = stack[t1109];|if t1110 == 2.0 then goto L25;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch10" [ label = "{<f0> Sierpinski_pruebaSwitch10|goto L17;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch87" [ label = "{<f0> Sierpinski_pruebaSwitch87|P = P - 1.0;|goto L20;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch11" [ label = "{<f0> Sierpinski_pruebaSwitch11|L16:|t1071 = t1066;|t1072 = stack[t1071];|if t1072 == 1.0 then goto L21;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch16" [ label = "{<f0> Sierpinski_pruebaSwitch16|goto L24;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch17" [ label = "{<f0> Sierpinski_pruebaSwitch17|L23:|t1074 = H;|H = H + 32.0;|heap[t1074] = 31.0;|t1075 = t1074 + 1.0;|heap[t1075] = 80.0;|t1076 = t1074 + 2.0;|heap[t1076] = 114.0;|t1077 = t1074 + 3.0;|heap[t1077] = 117.0;|t1078 = t1074 + 4.0;|heap[t1078] = 101.0;|t1079 = t1074 + 5.0;|heap[t1079] = 98.0;|t1080 = t1074 + 6.0;|heap[t1080] = 97.0;|t1081 = t1074 + 7.0;|heap[t1081] = 32.0;|t1082 = t1074 + 8.0;|heap[t1082] = 115.0;|t1083 = t1074 + 9.0;|heap[t1083] = 119.0;|t1084 = t1074 + 10.0;|heap[t1084] = 105.0;|t1085 = t1074 + 11.0;|heap[t1085] = 116.0;|t1086 = t1074 + 12.0;|heap[t1086] = 99.0;|t1087 = t1074 + 13.0;|heap[t1087] = 104.0;|t1088 = t1074 + 14.0;|heap[t1088] = 32.0;|t1089 = t1074 + 15.0;|heap[t1089] = 45.0;|t1090 = t1074 + 16.0;|heap[t1090] = 32.0;|t1091 = t1074 + 17.0;|heap[t1091] = 69.0;|t1092 = t1074 + 18.0;|heap[t1092] = 110.0;|t1093 = t1074 + 19.0;|heap[t1093] = 116.0;|t1094 = t1074 + 20.0;|heap[t1094] = 114.0;|t1095 = t1074 + 21.0;|heap[t1095] = 97.0;|t1096 = t1074 + 22.0;|heap[t1096] = 32.0;|t1097 = t1074 + 23.0;|heap[t1097] = 101.0;|t1098 = t1074 + 24.0;|heap[t1098] = 110.0;|t1099 = t1074 + 25.0;|heap[t1099] = 32.0;|t1100 = t1074 + 26.0;|heap[t1100] = 99.0;|t1101 = t1074 + 27.0;|heap[t1101] = 97.0;|t1102 = t1074 + 28.0;|heap[t1102] = 115.0;|t1103 = t1074 + 29.0;|heap[t1103] = 101.0;|t1104 = t1074 + 30.0;|heap[t1104] = 32.0;|t1105 = t1074 + 31.0;|heap[t1105] = 49.0;|t1106 = P + 1.0;|t1107 = t1106;|stack[t1107] = t1074;|P = P + 1.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch14" [ label = "{<f0> Sierpinski_pruebaSwitch14|goto L22;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch15" [ label = "{<f0> Sierpinski_pruebaSwitch15|L22:|if 1.0 == 1.0 then goto L23;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch237" [ label = "{<f0> Sierpinski_pruebaSwitch237|P = P - 1.0;|goto L20;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch4" [ label = "{<f0> Sierpinski_pruebaSwitch4|L15:|t1066 = t1064;|t1067 = t1066;|t1068 = stack[t1067];|if t1068 < 10.0 then goto L18;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch" [ label = "{<f0> Sierpinski_pruebaSwitch|P = P + 2.0;|t1064 = P;|t1065 = t1064;|stack[t1065] = 0.0;|<f1> }" shape = "record"];
+"nodeSierpinski_pruebaSwitch239" [ label = "{<f0> Sierpinski_pruebaSwitch239|L20:|t1182 = t1066;|t1183 = stack[t1182];|t1184 = t1183 + 1.0;|t1186 = t1066;|stack[t1186] = t1184;|goto L15;|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_pruebaSwitch";}
+subgraph cluster8 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_main37" [ label = "{<f0> Sierpinski_main37|P = P - 7.0;|t866 = t842;|t867 = stack[t866];|t868 = t867 + 1.0;|t869 = heap[t868];|t871 = t839;|stack[t871] = t869;|t872 = t849;|stack[t872] = 30.0;|t873 = t850;|stack[t873] = 30.0;|t874 = t839 + 3.0;|stack[t874] = 255.0;|t875 = t839 + 4.0;|stack[t875] = 255.0;|t876 = t839 + 5.0;|stack[t876] = 0.0;|P = P + 7.0;|call Texto_string_int_int_int_int_int();|<f1> }" shape = "record"];
+"nodeSierpinski_main59" [ label = "{<f0> Sierpinski_main59|t878 = P + 1.0;|t879 = stack[t878];|P = P - 7.0;|t881 = t836 + 3.0;|stack[t881] = t879;|t883 = t881;|t884 = stack[t883];|t886 = t839;|stack[t886] = t884;|P = P + 7.0;|call Figura_paint();|<f1> }" shape = "record"];
+"nodeSierpinski_main" [ label = "{<f0> Sierpinski_main|t836 = P;|t837 = t836;|t838 = stack[t837];|t839 = P + 7.0;|t840 = t839;|stack[t840] = t838;|P = P + 7.0;|call Sierpinski_init();|<f1> }" shape = "record"];
+"nodeSierpinski_main22" [ label = "{<f0> Sierpinski_main22|t851 = P + 4.0;|t852 = stack[t851];|P = P - 7.0;|t854 = t836 + 2.0;|stack[t854] = t852;|t856 = t842;|t857 = stack[t856];|t859 = t854;|t860 = stack[t859];|t862 = t839;|stack[t862] = t860;|t863 = t849;|stack[t863] = t857;|P = P + 7.0;|call Sierpinski_setCanvas_Canvas();|<f1> }" shape = "record"];
+"nodeSierpinski_main77" [ label = "{<f0> Sierpinski_main77|P = P - 7.0;|t893 = t842;|t894 = stack[t893];|t896 = t839;|stack[t896] = t894;|P = P + 7.0;|call Sierpinski_pruebaFor();|<f1> }" shape = "record"];
+"nodeSierpinski_main56" [ label = "{<f0> Sierpinski_main56|P = P - 7.0;|P = P + 7.0;|call Figura_Figura();|<f1> }" shape = "record"];
+"nodeSierpinski_main84" [ label = "{<f0> Sierpinski_main84|P = P - 7.0;|t898 = t836 + 4.0;|stack[t898] = 6.0;|t900 = t842;|t901 = stack[t900];|t903 = t898;|t904 = stack[t903];|t906 = t839;|stack[t906] = t904;|t907 = t849;|stack[t907] = t901;|P = P + 7.0;|call Sierpinski_factorial_int();|<f1> }" shape = "record"];
+"nodeSierpinski_main97" [ label = "{<f0> Sierpinski_main97|t908 = P + 2.0;|t909 = stack[t908];|P = P - 7.0;|t911 = t836 + 5.0;|stack[t911] = t909;|t912 = H;|H = H + 29.0;|heap[t912] = 28.0;|t913 = t912 + 1.0;|heap[t913] = 83.0;|t914 = t912 + 2.0;|heap[t914] = 117.0;|t915 = t912 + 3.0;|heap[t915] = 99.0;|t916 = t912 + 4.0;|heap[t916] = 101.0;|t917 = t912 + 5.0;|heap[t917] = 99.0;|t918 = t912 + 6.0;|heap[t918] = 105.0;|t919 = t912 + 7.0;|heap[t919] = 243.0;|t920 = t912 + 8.0;|heap[t920] = 110.0;|t921 = t912 + 9.0;|heap[t921] = 32.0;|t922 = t912 + 10.0;|heap[t922] = 100.0;|t923 = t912 + 11.0;|heap[t923] = 101.0;|t924 = t912 + 12.0;|heap[t924] = 32.0;|t925 = t912 + 13.0;|heap[t925] = 102.0;|t926 = t912 + 14.0;|heap[t926] = 105.0;|t927 = t912 + 15.0;|heap[t927] = 98.0;|t928 = t912 + 16.0;|heap[t928] = 111.0;|t929 = t912 + 17.0;|heap[t929] = 110.0;|t930 = t912 + 18.0;|heap[t930] = 97.0;|t931 = t912 + 19.0;|heap[t931] = 99.0;|t932 = t912 + 20.0;|heap[t932] = 99.0;|t933 = t912 + 21.0;|heap[t933] = 105.0;|t934 = t912 + 22.0;|heap[t934] = 32.0;|t935 = t912 + 23.0;|heap[t935] = 100.0;|t936 = t912 + 24.0;|heap[t936] = 101.0;|t937 = t912 + 25.0;|heap[t937] = 32.0;|t938 = t912 + 26.0;|heap[t938] = 54.0;|t939 = t912 + 27.0;|heap[t939] = 48.0;|t940 = t912 + 28.0;|heap[t940] = 32.0;|t942 = t842;|t943 = stack[t942];|t945 = t839;|stack[t945] = 60.0;|t946 = t849;|stack[t946] = t943;|P = P + 7.0;|call Sierpinski_fibonacci_int();|<f1> }" shape = "record"];
+"nodeSierpinski_main339" [ label = "{<f0> Sierpinski_main339|P = P - 7.0;|t1051 = int_to_char 70.0;|t1052 = char_to_string t1051;|t1054 = t839;|stack[t1054] = t1052;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main70" [ label = "{<f0> Sierpinski_main70|P = P - 7.0;|t888 = t836 + 3.0;|t889 = stack[t888];|t891 = t839;|stack[t891] = t889;|P = P + 7.0;|call Figura_paintFiguras();|<f1> }" shape = "record"];
+"nodeSierpinski_main319" [ label = "{<f0> Sierpinski_main319|P = P - 7.0;|t1038 = t836 + 6.0;|t1039 = stack[t1038];|t1041 = t839;|stack[t1041] = t1039;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main346" [ label = "{<f0> Sierpinski_main346|P = P - 7.0;|t1056 = t842;|t1057 = stack[t1056];|t1059 = t839;|stack[t1059] = t1057;|P = P + 7.0;|call Sierpinski_pruebaSwitch();|<f1> }" shape = "record"];
+"nodeSierpinski_main326" [ label = "{<f0> Sierpinski_main326|P = P - 7.0;|t1043 = float_to_string 0.6666667;|t1045 = t839;|stack[t1045] = t1043;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main359" [ label = "{<f0> Sierpinski_main359|P = P - 7.0;|<f1> }" shape = "record"];
+"nodeSierpinski_main8" [ label = "{<f0> Sierpinski_main8|P = P - 7.0;|t842 = t836;|t843 = t842;|t844 = stack[t843];|t845 = t844;|t846 = heap[t845];|t848 = t839;|stack[t848] = 400.0;|t849 = t839 + 1.0;|stack[t849] = 400.0;|t850 = t839 + 2.0;|stack[t850] = t846;|P = P + 7.0;|call Canvas_Canvas_int_int_Array();|<f1> }" shape = "record"];
+"nodeSierpinski_main353" [ label = "{<f0> Sierpinski_main353|P = P - 7.0;|t1061 = float_to_string Infinity;|t1063 = t839;|stack[t1063] = t1061;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main310" [ label = "{<f0> Sierpinski_main310|t1031 = t908;|t1032 = stack[t1031];|P = P - 7.0;|t1033 = int_to_string t1032;|t1034 = t1021 strcat t1033;|t1036 = t839;|stack[t1036] = t1034;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main332" [ label = "{<f0> Sierpinski_main332|P = P - 7.0;|t1047 = float_to_int 0.6666667;|t1048 = int_to_string t1047;|t1050 = t839;|stack[t1050] = t1048;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main234" [ label = "{<f0> Sierpinski_main234|P = P - 7.0;|t987 = t912;|H = H + 25.0;|heap[t987] = 24.0;|t988 = t953;|heap[t988] = 70.0;|t989 = t954;|heap[t989] = 97.0;|t990 = t955;|heap[t990] = 99.0;|t991 = t956;|heap[t991] = 116.0;|t992 = t917;|heap[t992] = 111.0;|t993 = t918;|heap[t993] = 114.0;|t994 = t919;|heap[t994] = 105.0;|t995 = t920;|heap[t995] = 97.0;|t996 = t921;|heap[t996] = 108.0;|t997 = t922;|heap[t997] = 32.0;|t998 = t923;|heap[t998] = 114.0;|t999 = t924;|heap[t999] = 101.0;|t1000 = t925;|heap[t1000] = 99.0;|t1001 = t926;|heap[t1001] = 117.0;|t1002 = t927;|heap[t1002] = 114.0;|t1003 = t928;|heap[t1003] = 115.0;|t1004 = t929;|heap[t1004] = 105.0;|t1005 = t930;|heap[t1005] = 118.0;|t1006 = t931;|heap[t1006] = 111.0;|t1007 = t932;|heap[t1007] = 32.0;|t1008 = t933;|heap[t1008] = 100.0;|t1009 = t934;|heap[t1009] = 101.0;|t1010 = t935;|heap[t1010] = 44.0;|t1011 = t936;|heap[t1011] = 32.0;|t1013 = t836 + 4.0;|t1014 = stack[t1013];|t1015 = int_to_string t1014;|t1016 = t987 strcat t1015;|t1017 = t912;|H = H + 4.0;|heap[t1017] = 3.0;|t1018 = t988;|heap[t1018] = 32.0;|t1019 = t989;|heap[t1019] = 61.0;|t1020 = t990;|heap[t1020] = 32.0;|t1021 = t1016 strcat t1017;|t1023 = t842;|t1024 = stack[t1023];|t1026 = t1013;|t1027 = stack[t1026];|t1029 = t839;|stack[t1029] = t1027;|t1030 = t849;|stack[t1030] = t1024;|P = P + 7.0;|call Sierpinski_factorialRecursivo_int();|<f1> }" shape = "record"];
+"nodeSierpinski_main169" [ label = "{<f0> Sierpinski_main169|t947 = t908;|t948 = stack[t947];|P = P - 7.0;|t949 = t912 strcat t948;|t951 = t836 + 6.0;|stack[t951] = t949;|t952 = t912;|H = H + 17.0;|heap[t952] = 16.0;|t953 = t913;|heap[t953] = 69.0;|t954 = t914;|heap[t954] = 108.0;|t955 = t915;|heap[t955] = 32.0;|t956 = t916;|heap[t956] = 102.0;|t957 = t917;|heap[t957] = 97.0;|t958 = t918;|heap[t958] = 99.0;|t959 = t919;|heap[t959] = 116.0;|t960 = t920;|heap[t960] = 111.0;|t961 = t921;|heap[t961] = 114.0;|t962 = t922;|heap[t962] = 105.0;|t963 = t923;|heap[t963] = 97.0;|t964 = t924;|heap[t964] = 108.0;|t965 = t925;|heap[t965] = 32.0;|t966 = t926;|heap[t966] = 100.0;|t967 = t927;|heap[t967] = 101.0;|t968 = t928;|heap[t968] = 32.0;|t970 = t836 + 4.0;|t971 = stack[t970];|t972 = int_to_string t971;|t973 = t952 strcat t972;|t974 = t912;|H = H + 5.0;|heap[t974] = 4.0;|t975 = t953;|heap[t975] = 32.0;|t976 = t954;|heap[t976] = 101.0;|t977 = t955;|heap[t977] = 115.0;|t978 = t956;|heap[t978] = 32.0;|t979 = t973 strcat t974;|t981 = t836 + 5.0;|t982 = stack[t981];|t983 = int_to_string t982;|t984 = t979 strcat t983;|t986 = t839;|stack[t986] = t984;|P = P + 7.0;|call Imprimir_string();|<f1> }" shape = "record"];
+"nodeSierpinski_main360" [ label = "{<f0> Sierpinski_main360|L13:|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_main";}
+subgraph cluster9 {
+style=filled;
+color=lightgrey;
+"nodeSierpinski_init" [ label = "{<f0> Sierpinski_init|t765 = H;|H = H + 24.0;|heap[t765] = 23.0;|t766 = t765 + 1.0;|heap[t766] = 32.0;|t767 = t765 + 2.0;|heap[t767] = 80.0;|t768 = t765 + 3.0;|heap[t768] = 114.0;|t769 = t765 + 4.0;|heap[t769] = 111.0;|t770 = t765 + 5.0;|heap[t770] = 121.0;|t771 = t765 + 6.0;|heap[t771] = 101.0;|t772 = t765 + 7.0;|heap[t772] = 99.0;|t773 = t765 + 8.0;|heap[t773] = 116.0;|t774 = t765 + 9.0;|heap[t774] = 111.0;|t775 = t765 + 10.0;|heap[t775] = 32.0;|t776 = t765 + 11.0;|heap[t776] = 67.0;|t777 = t765 + 12.0;|heap[t777] = 111.0;|t778 = t765 + 13.0;|heap[t778] = 109.0;|t779 = t765 + 14.0;|heap[t779] = 112.0;|t780 = t765 + 15.0;|heap[t780] = 105.0;|t781 = t765 + 16.0;|heap[t781] = 108.0;|t782 = t765 + 17.0;|heap[t782] = 97.0;|t783 = t765 + 18.0;|heap[t783] = 100.0;|t784 = t765 + 19.0;|heap[t784] = 111.0;|t785 = t765 + 20.0;|heap[t785] = 114.0;|t786 = t765 + 21.0;|heap[t786] = 101.0;|t787 = t765 + 22.0;|heap[t787] = 115.0;|t788 = t765 + 23.0;|heap[t788] = 32.0;|t790 = P;|t791 = t790;|t792 = stack[t791];|t793 = t792 + 1.0;|heap[t793] = t765;|t796 = t765;|H = H + 3.0;|H = H + 2.0;|heap[t796] = 1.0;|t797 = t766;|heap[t797] = 3.0;|t800 = t790;|t801 = stack[t800];|t802 = t801;|heap[t802] = t765;|t805 = t790;|t806 = stack[t805];|t807 = t806;|t808 = heap[t807];|t809 = heap[t808];|t810 = t809 + 1.0;|t811 = t810 + t808;|t813 = t811;|heap[t813] = 255.0;|t816 = t790;|t817 = stack[t816];|t818 = t817;|t819 = heap[t818];|t820 = heap[t819];|t821 = t820 + 1.0;|t822 = t821 + t819;|t824 = 1.0 + t822;|heap[t824] = 255.0;|t827 = t790;|t828 = stack[t827];|t829 = t828;|t830 = heap[t829];|t831 = heap[t830];|t832 = t831 + 1.0;|t833 = t832 + t830;|t835 = 2.0 + t833;|heap[t835] = 255.0;|<f1> }" shape = "record"];
+"nodeSierpinski_init91" [ label = "{<f0> Sierpinski_init91|L12:|<f1> }" shape = "record"];
+label="Metodo: Sierpinski_init";}
+subgraph cluster10 {
+style=filled;
+color=lightgrey;
+"nodeFigura_paintFiguras182" [ label = "{<f0> Figura_paintFiguras182|L11:|<f1> }" shape = "record"];
+"nodeFigura_paintFiguras" [ label = "{<f0> Figura_paintFiguras|t619 = P + 4.0;|t620 = t619;|stack[t620] = 30.0;|t621 = t619 + 1.0;|stack[t621] = 30.0;|t622 = t619 + 2.0;|stack[t622] = 100.0;|t623 = t619 + 3.0;|stack[t623] = 100.0;|t624 = t619 + 4.0;|stack[t624] = 0.0;|t625 = t619 + 5.0;|stack[t625] = 90.0;|t626 = t619 + 6.0;|stack[t626] = 0.0;|t627 = t619 + 7.0;|stack[t627] = 255.0;|t628 = t619 + 8.0;|stack[t628] = 10.0;|t629 = t619 + 9.0;|stack[t629] = 1.0;|P = P + 4.0;|call Arco_int_int_int_int_int_int_int_int_int_bool();|<f1> }" shape = "record"];
+"nodeFigura_paintFiguras80" [ label = "{<f0> Figura_paintFiguras80|P = P - 4.0;|t659 = H;|H = H + 6.0;|H = H + 2.0;|heap[t659] = 1.0;|t660 = t659 + 1.0;|heap[t660] = 6.0;|t661 = P;|t662 = t661 + 2.0;|stack[t662] = t659;|t664 = t662;|t665 = stack[t664];|t666 = heap[t665];|t667 = t666 + 1.0;|t668 = t667 + t665;|t670 = t668;|heap[t670] = 20.0;|t672 = t662;|t673 = stack[t672];|t674 = heap[t673];|t675 = t674 + 1.0;|t676 = t675 + t673;|t678 = 1.0 + t676;|heap[t678] = 40.0;|t680 = t662;|t681 = stack[t680];|t682 = heap[t681];|t683 = t682 + 1.0;|t684 = t683 + t681;|t686 = 2.0 + t684;|heap[t686] = 50.0;|t688 = t662;|t689 = stack[t688];|t690 = heap[t689];|t691 = t690 + 1.0;|t692 = t691 + t689;|t694 = 3.0 + t692;|heap[t694] = 20.0;|t696 = t662;|t697 = stack[t696];|t698 = heap[t697];|t699 = t698 + 1.0;|t700 = t699 + t697;|t702 = 4.0 + t700;|heap[t702] = 20.0;|t704 = t662;|t705 = stack[t704];|t706 = heap[t705];|t707 = t706 + 1.0;|t708 = t707 + t705;|t710 = 5.0 + t708;|heap[t710] = 15.0;|t713 = t659;|H = H + 5.0;|H = H + 2.0;|heap[t713] = 1.0;|t714 = t660;|heap[t714] = 5.0;|t716 = t661 + 3.0;|stack[t716] = t659;|t718 = t716;|t719 = stack[t718];|t720 = heap[t719];|t721 = t720 + 1.0;|t722 = t721 + t719;|t724 = t722;|heap[t724] = 50.0;|t726 = t716;|t727 = stack[t726];|t728 = heap[t727];|t729 = t728 + 1.0;|t730 = t729 + t727;|t732 = 1.0 + t730;|heap[t732] = 50.0;|t734 = t716;|t735 = stack[t734];|t736 = heap[t735];|t737 = t736 + 1.0;|t738 = t737 + t735;|t740 = 2.0 + t738;|heap[t740] = 60.0;|t742 = t716;|t743 = stack[t742];|t744 = heap[t743];|t745 = t744 + 1.0;|t746 = t745 + t743;|t748 = 3.0 + t746;|heap[t748] = 80.0;|t750 = t716;|t751 = stack[t750];|t752 = heap[t751];|t753 = t752 + 1.0;|t754 = t753 + t751;|t756 = 4.0 + t754;|heap[t756] = 80.0;|t758 = t716;|t759 = stack[t758];|t760 = heap[t759];|t761 = t760 + 1.0;|t762 = t761 + t759;|t764 = 5.0 + t762;|heap[t764] = 60.0;|<f1> }" shape = "record"];
+"nodeFigura_paintFiguras61" [ label = "{<f0> Figura_paintFiguras61|P = P - 4.0;|t649 = t619;|stack[t649] = 50.0;|t650 = t621;|stack[t650] = 50.0;|t651 = t622;|stack[t651] = 100.0;|t652 = t623;|stack[t652] = 100.0;|t653 = t624;|stack[t653] = 0.0;|t654 = t625;|stack[t654] = 255.0;|t655 = t626;|stack[t655] = 255.0;|t656 = t627;|stack[t656] = 0.0;|P = P + 4.0;|call Ovalo_int_int_int_int_int_int_int_bool();|<f1> }" shape = "record"];
+"nodeFigura_paintFiguras42" [ label = "{<f0> Figura_paintFiguras42|P = P - 4.0;|t640 = t619;|stack[t640] = 100.0;|t641 = t621;|stack[t641] = 200.0;|t642 = t622;|stack[t642] = 50.0;|t643 = t623;|stack[t643] = 50.0;|t644 = t624;|stack[t644] = 0.0;|t645 = t625;|stack[t645] = 0.0;|t646 = t626;|stack[t646] = 255.0;|t647 = t627;|stack[t647] = 1.0;|P = P + 4.0;|call Ovalo_int_int_int_int_int_int_int_bool();|<f1> }" shape = "record"];
+"nodeFigura_paintFiguras23" [ label = "{<f0> Figura_paintFiguras23|P = P - 4.0;|t631 = t619;|stack[t631] = 100.0;|t632 = t621;|stack[t632] = 100.0;|t633 = t622;|stack[t633] = 50.0;|t634 = t623;|stack[t634] = 50.0;|t635 = t624;|stack[t635] = 0.0;|t636 = t625;|stack[t636] = 0.0;|t637 = t626;|stack[t637] = 255.0;|t638 = t627;|stack[t638] = 1.0;|P = P + 4.0;|call Rectangulo_int_int_int_int_int_int_int_bool();|<f1> }" shape = "record"];
+label="Metodo: Figura_paintFiguras";}
+subgraph cluster11 {
+style=filled;
+color=lightgrey;
+"nodeFigura_paintRecursivo_int_float_float_float_float108" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float108|goto L7;|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float449" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float449|P = P;|P = P - 17.0;|goto L10;|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float109" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float109|L7:|if 1.0 == 1.0 then goto L8;|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float111" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float111|L8:|P = P + 17.0;|t263 = P - 17.0;|t264 = t263 + 5.0;|t265 = stack[t264];|t266 = t265 + 6.0;|t267 = heap[t266];|t268 = heap[t267];|t269 = t268 + 1.0;|t270 = t269 + t267;|t272 = t270;|heap[t272] = 0.0;|t275 = t264;|t276 = stack[t275];|t277 = t276 + 6.0;|t278 = heap[t277];|t279 = heap[t278];|t280 = t279 + 1.0;|t281 = t280 + t278;|t283 = 1.0 + t281;|heap[t283] = 255.0;|t286 = t264;|t287 = stack[t286];|t288 = t287 + 6.0;|t289 = heap[t288];|t290 = heap[t289];|t291 = t290 + 1.0;|t292 = t291 + t289;|t294 = 2.0 + t292;|heap[t294] = 0.0;|t296 = t263 + 1.0;|t297 = stack[t296];|t298 = float_to_int t297;|t300 = t263 + 2.0;|t301 = stack[t300];|t302 = float_to_int t301;|t304 = t263 + 3.0;|t305 = stack[t304];|t306 = float_to_int t305;|t308 = t263 + 4.0;|t309 = stack[t308];|t310 = float_to_int t309;|t313 = t264;|t314 = stack[t313];|t315 = t314 + 6.0;|t316 = heap[t315];|t317 = heap[t316];|t318 = t317 + 1.0;|t319 = t318 + t316;|t321 = t319;|t322 = heap[t321];|t325 = t264;|t326 = stack[t325];|t327 = t326 + 6.0;|t328 = heap[t327];|t329 = heap[t328];|t330 = t329 + 1.0;|t331 = t330 + t328;|t333 = 1.0 + t331;|t334 = heap[t333];|t337 = t264;|t338 = stack[t337];|t339 = t338 + 6.0;|t340 = heap[t339];|t341 = heap[t340];|t342 = t341 + 1.0;|t343 = t342 + t340;|t345 = 2.0 + t343;|t346 = heap[t345];|t347 = t128;|t348 = t347;|stack[t348] = t298;|t349 = t347 + 1.0;|stack[t349] = t302;|t350 = t347 + 2.0;|stack[t350] = t306;|t351 = t347 + 3.0;|stack[t351] = t310;|t352 = t347 + 4.0;|stack[t352] = t322;|t353 = t347 + 5.0;|stack[t353] = t334;|t354 = t347 + 6.0;|stack[t354] = t346;|P = P;|call Linea_int_int_int_int_int_int_int();|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float452" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float452|L5:|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float365" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float365|L9:|P = P + 17.0;|t542 = t450;|t543 = stack[t542];|t545 = t263;|t546 = stack[t545];|t547 = t546 - 1.0;|t549 = t296;|t550 = stack[t549];|t552 = t300;|t553 = stack[t552];|t555 = t263 + 11.0;|t556 = stack[t555];|t558 = t263 + 12.0;|t559 = stack[t558];|t561 = t347;|stack[t561] = t547;|t562 = t349;|stack[t562] = t550;|t563 = t350;|stack[t563] = t553;|t564 = t351;|stack[t564] = t556;|t565 = t352;|stack[t565] = t559;|t566 = t353;|stack[t566] = t543;|P = P;|call Figura_paintRecursivo_int_float_float_float_float();|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float421" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float421|P = P;|t594 = t450;|t595 = stack[t594];|t597 = t263;|t598 = stack[t597];|t599 = t598 - 1.0;|t601 = t263 + 15.0;|t602 = stack[t601];|t604 = t263 + 16.0;|t605 = stack[t604];|t607 = t263 + 13.0;|t608 = stack[t607];|t610 = t263 + 14.0;|t611 = stack[t610];|t613 = t347;|stack[t613] = t599;|t614 = t349;|stack[t614] = t602;|t615 = t350;|stack[t615] = t605;|t616 = t351;|stack[t616] = t608;|t617 = t352;|stack[t617] = t611;|t618 = t353;|stack[t618] = t595;|P = P;|call Figura_paintRecursivo_int_float_float_float_float();|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float|t128 = P;|t129 = t128 + 3.0;|t130 = stack[t129];|t132 = t128 + 1.0;|t133 = stack[t132];|t134 = t130 - t133;|t135 = t134 / 2.0;|t137 = t128 + 7.0;|t138 = int_to_float t135;|stack[t137] = t138;|t140 = t128 + 4.0;|t141 = stack[t140];|t143 = t128 + 2.0;|t144 = stack[t143];|t145 = t141 - t144;|t146 = t145 / 2.0;|t148 = t128 + 8.0;|t149 = int_to_float t146;|stack[t148] = t149;|t151 = t132;|t152 = stack[t151];|t154 = t137;|t155 = stack[t154];|t156 = t152 + t155;|t158 = t148;|t159 = stack[t158];|t160 = t159 + t159;|t163 = t128 + 5.0;|t164 = stack[t163];|t165 = t164 + 1.0;|t166 = heap[t165];|t167 = t160 * t166;|t168 = t156 - t167;|t170 = t128 + 9.0;|stack[t170] = t168;|t172 = t143;|t173 = stack[t172];|t175 = t148;|t176 = stack[t175];|t177 = t173 + t176;|t179 = t137;|t180 = stack[t179];|t181 = t180 + t180;|t184 = t163;|t185 = stack[t184];|t186 = t185 + 1.0;|t187 = heap[t186];|t188 = t181 * t187;|t189 = t177 + t188;|t191 = t128 + 10.0;|stack[t191] = t189;|t193 = t129;|t194 = stack[t193];|t196 = t132;|t197 = stack[t196];|t198 = t194 + t197;|t199 = t198 / 2.0;|t201 = t128 + 11.0;|t202 = int_to_float t199;|stack[t201] = t202;|t204 = t140;|t205 = stack[t204];|t207 = t143;|t208 = stack[t207];|t209 = t205 + t208;|t210 = t209 / 2.0;|t212 = t128 + 12.0;|t213 = int_to_float t210;|stack[t212] = t213;|t215 = t170;|t216 = stack[t215];|t218 = t129;|t219 = stack[t218];|t220 = t216 + t219;|t221 = t220 / 2.0;|t223 = t128 + 13.0;|t224 = int_to_float t221;|stack[t223] = t224;|t226 = t191;|t227 = stack[t226];|t229 = t140;|t230 = stack[t229];|t231 = t227 + t230;|t232 = t231 / 2.0;|t234 = t128 + 14.0;|t235 = int_to_float t232;|stack[t234] = t235;|t237 = t132;|t238 = stack[t237];|t240 = t170;|t241 = stack[t240];|t242 = t238 + t241;|t243 = t242 / 2.0;|t245 = t128 + 15.0;|t246 = int_to_float t243;|stack[t245] = t246;|t248 = t143;|t249 = stack[t248];|t251 = t191;|t252 = stack[t251];|t253 = t249 + t252;|t254 = t253 / 2.0;|t256 = t128 + 16.0;|t257 = int_to_float t254;|stack[t256] = t257;|t259 = t128;|t260 = stack[t259];|if t260 <= 0.0 then goto L6;|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float279" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float279|P = P;|t450 = t357;|t451 = stack[t450];|t452 = t451 + 6.0;|t453 = heap[t452];|t454 = heap[t453];|t455 = t454 + 1.0;|t456 = t455 + t453;|t458 = t456;|heap[t458] = 0.0;|t461 = t450;|t462 = stack[t461];|t463 = t462 + 6.0;|t464 = heap[t463];|t465 = heap[t464];|t466 = t465 + 1.0;|t467 = t466 + t464;|t469 = 1.0 + t467;|heap[t469] = 0.0;|t472 = t450;|t473 = stack[t472];|t474 = t473 + 6.0;|t475 = heap[t474];|t476 = heap[t475];|t477 = t476 + 1.0;|t478 = t477 + t475;|t480 = 2.0 + t478;|heap[t480] = 255.0;|t482 = t397;|t483 = stack[t482];|t484 = float_to_int t483;|t486 = t401;|t487 = stack[t486];|t488 = float_to_int t487;|t490 = t296;|t491 = stack[t490];|t492 = float_to_int t491;|t494 = t300;|t495 = stack[t494];|t496 = float_to_int t495;|t499 = t450;|t500 = stack[t499];|t501 = t500 + 6.0;|t502 = heap[t501];|t503 = heap[t502];|t504 = t503 + 1.0;|t505 = t504 + t502;|t507 = t505;|t508 = heap[t507];|t511 = t450;|t512 = stack[t511];|t513 = t512 + 6.0;|t514 = heap[t513];|t515 = heap[t514];|t516 = t515 + 1.0;|t517 = t516 + t514;|t519 = 1.0 + t517;|t520 = heap[t519];|t523 = t450;|t524 = stack[t523];|t525 = t524 + 6.0;|t526 = heap[t525];|t527 = heap[t526];|t528 = t527 + 1.0;|t529 = t528 + t526;|t531 = 2.0 + t529;|t532 = heap[t531];|t534 = t347;|stack[t534] = t484;|t535 = t349;|stack[t535] = t488;|t536 = t350;|stack[t536] = t492;|t537 = t351;|stack[t537] = t496;|t538 = t352;|stack[t538] = t508;|t539 = t353;|stack[t539] = t520;|t540 = t354;|stack[t540] = t532;|P = P;|call Linea_int_int_int_int_int_int_int();|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float393" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float393|P = P;|t568 = t450;|t569 = stack[t568];|t571 = t263;|t572 = stack[t571];|t573 = t572 - 1.0;|t575 = t555;|t576 = stack[t575];|t578 = t558;|t579 = stack[t578];|t581 = t304;|t582 = stack[t581];|t584 = t308;|t585 = stack[t584];|t587 = t347;|stack[t587] = t573;|t588 = t349;|stack[t588] = t576;|t589 = t350;|stack[t589] = t579;|t590 = t351;|stack[t590] = t582;|t591 = t352;|stack[t591] = t585;|t592 = t353;|stack[t592] = t569;|P = P;|call Figura_paintRecursivo_int_float_float_float_float();|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float196" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float196|P = P;|t357 = t264;|t358 = stack[t357];|t359 = t358 + 6.0;|t360 = heap[t359];|t361 = heap[t360];|t362 = t361 + 1.0;|t363 = t362 + t360;|t365 = t363;|heap[t365] = 255.0;|t368 = t357;|t369 = stack[t368];|t370 = t369 + 6.0;|t371 = heap[t370];|t372 = heap[t371];|t373 = t372 + 1.0;|t374 = t373 + t371;|t376 = 1.0 + t374;|heap[t376] = 0.0;|t379 = t357;|t380 = stack[t379];|t381 = t380 + 6.0;|t382 = heap[t381];|t383 = heap[t382];|t384 = t383 + 1.0;|t385 = t384 + t382;|t387 = 2.0 + t385;|heap[t387] = 0.0;|t389 = t304;|t390 = stack[t389];|t391 = float_to_int t390;|t393 = t308;|t394 = stack[t393];|t395 = float_to_int t394;|t397 = t263 + 9.0;|t398 = stack[t397];|t399 = float_to_int t398;|t401 = t263 + 10.0;|t402 = stack[t401];|t403 = float_to_int t402;|t406 = t357;|t407 = stack[t406];|t408 = t407 + 6.0;|t409 = heap[t408];|t410 = heap[t409];|t411 = t410 + 1.0;|t412 = t411 + t409;|t414 = t412;|t415 = heap[t414];|t418 = t357;|t419 = stack[t418];|t420 = t419 + 6.0;|t421 = heap[t420];|t422 = heap[t421];|t423 = t422 + 1.0;|t424 = t423 + t421;|t426 = 1.0 + t424;|t427 = heap[t426];|t430 = t357;|t431 = stack[t430];|t432 = t431 + 6.0;|t433 = heap[t432];|t434 = heap[t433];|t435 = t434 + 1.0;|t436 = t435 + t433;|t438 = 2.0 + t436;|t439 = heap[t438];|t441 = t347;|stack[t441] = t391;|t442 = t349;|stack[t442] = t395;|t443 = t350;|stack[t443] = t399;|t444 = t351;|stack[t444] = t403;|t445 = t352;|stack[t445] = t415;|t446 = t353;|stack[t446] = t427;|t447 = t354;|stack[t447] = t439;|P = P;|call Linea_int_int_int_int_int_int_int();|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float362" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float362|P = P;|P = P - 17.0;|goto L10;|<f1> }" shape = "record"];
+"nodeFigura_paintRecursivo_int_float_float_float_float110" [ label = "{<f0> Figura_paintRecursivo_int_float_float_float_float110|goto L9;|<f1> }" shape = "record"];
+label="Metodo: Figura_paintRecursivo_int_float_float_float_float";}
+subgraph cluster12 {
+style=filled;
+color=lightgrey;
+"nodeFigura_paint" [ label = "{<f0> Figura_paint|t88 = P;|t89 = t88;|t90 = stack[t89];|t93 = t88;|t94 = stack[t93];|t95 = t94;|t96 = heap[t95];|t99 = t88;|t100 = stack[t99];|t101 = t100 + 3.0;|t102 = heap[t101];|t105 = t88;|t106 = stack[t105];|t107 = t106 + 4.0;|t108 = heap[t107];|t111 = t88;|t112 = stack[t111];|t113 = t112 + 2.0;|t114 = heap[t113];|t117 = t88;|t118 = stack[t117];|t119 = t118 + 5.0;|t120 = heap[t119];|t121 = P + 2.0;|t122 = t121;|stack[t122] = t96;|t123 = t121 + 1.0;|stack[t123] = t102;|t124 = t121 + 2.0;|stack[t124] = t108;|t125 = t121 + 3.0;|stack[t125] = t114;|t126 = t121 + 4.0;|stack[t126] = t120;|t127 = t121 + 5.0;|stack[t127] = t90;|P = P + 2.0;|call Figura_paintRecursivo_int_float_float_float_float();|<f1> }" shape = "record"];
+"nodeFigura_paint39" [ label = "{<f0> Figura_paint39|L4:|<f1> }" shape = "record"];
+"nodeFigura_paint38" [ label = "{<f0> Figura_paint38|P = P - 2.0;|<f1> }" shape = "record"];
+label="Metodo: Figura_paint";}
+subgraph cluster13 {
+style=filled;
+color=lightgrey;
+"nodeFigura_Figura" [ label = "{<f0> Figura_Figura|t41 = P;|t42 = t41;|stack[t42] = H;|t44 = t41 + 1.0;|stack[t44] = H;|H = H + 7.0;|t47 = H;|H = H + 3.0;|H = H + 2.0;|heap[t47] = 1.0;|t48 = t47 + 1.0;|heap[t48] = 3.0;|t51 = t41;|t52 = stack[t51];|t53 = t52 + 6.0;|heap[t53] = t47;|t56 = t41;|t57 = stack[t56];|t58 = t57 + 3.0;|t59 = int_to_float 300.0;|heap[t58] = t59;|t62 = t41;|t63 = stack[t62];|t64 = t63 + 4.0;|heap[t64] = t59;|t68 = t41;|t69 = stack[t68];|t70 = t69 + 2.0;|t71 = int_to_float 10.0;|heap[t70] = t71;|t74 = t41;|t75 = stack[t74];|t76 = t75 + 5.0;|heap[t76] = t59;|t80 = t41;|t81 = stack[t80];|t82 = t81 + 1.0;|heap[t82] = 0.866;|t85 = t41;|t86 = stack[t85];|t87 = t86;|heap[t87] = 4.0;|<f1> }" shape = "record"];
+"nodeFigura_Figura42" [ label = "{<f0> Figura_Figura42|L3:|<f1> }" shape = "record"];
+label="Metodo: Figura_Figura";}
+subgraph cluster14 {
+style=filled;
+color=lightgrey;
+"nodeCanvas_getAncho8" [ label = "{<f0> Canvas_getAncho8|L2:|<f1> }" shape = "record"];
+"nodeCanvas_getAncho" [ label = "{<f0> Canvas_getAncho|t34 = P;|t35 = t34;|t36 = stack[t35];|t37 = t36 + 1.0;|t38 = heap[t37];|t40 = t34 + 1.0;|stack[t40] = t38;|goto L2;|<f1> }" shape = "record"];
+label="Metodo: Canvas_getAncho";}
+subgraph cluster15 {
+style=filled;
+color=lightgrey;
+"nodeCanvas_getAlto8" [ label = "{<f0> Canvas_getAlto8|L1:|<f1> }" shape = "record"];
+"nodeCanvas_getAlto" [ label = "{<f0> Canvas_getAlto|t26 = P;|t27 = t26;|t28 = stack[t27];|t29 = t28;|t30 = heap[t29];|t32 = t26 + 1.0;|stack[t32] = t30;|goto L1;|<f1> }" shape = "record"];
+label="Metodo: Canvas_getAlto";}
+subgraph cluster16 {
+style=filled;
+color=lightgrey;
+"nodeCanvas_Canvas_int_int_Array24" [ label = "{<f0> Canvas_Canvas_int_int_Array24|L0:|<f1> }" shape = "record"];
+"nodeCanvas_Canvas_int_int_Array" [ label = "{<f0> Canvas_Canvas_int_int_Array|t0 = P;|t1 = t0 + 3.0;|stack[t1] = H;|t3 = t0 + 4.0;|stack[t3] = H;|H = H + 3.0;|t5 = t0;|t6 = stack[t5];|t8 = t1;|t9 = stack[t8];|t10 = t9;|heap[t10] = t6;|t12 = t0 + 1.0;|t13 = stack[t12];|t15 = t1;|t16 = stack[t15];|t17 = t16 + 1.0;|heap[t17] = t13;|t19 = t0 + 2.0;|t20 = stack[t19];|t22 = t1;|t23 = stack[t22];|t24 = t23 + 2.0;|heap[t24] = t20;|<f1> }" shape = "record"];
+label="Metodo: Canvas_Canvas_int_int_Array";}
+"nodeSierpinski_fibonacci_int":f1->"nodeSierpinski_fibonacci_int24":f0
+"nodeSierpinski_fibonacci_int24":f1->"nodeSierpinski_fibonacci_int65":f0
+"nodeSierpinski_fibonacci_int24":f1->"nodeSierpinski_fibonacci_int64":f0
+"nodeSierpinski_fibonacci_int67":f1->"nodeSierpinski_fibonacci_int78":f0
+"nodeSierpinski_fibonacci_int67":f1->"nodeSierpinski_fibonacci_int78":f0
+"nodeSierpinski_fibonacci_int66":f1->"nodeSierpinski_fibonacci_int67":f0
+"nodeSierpinski_fibonacci_int66":f1->"nodeSierpinski_fibonacci_int67":f0
+"nodeSierpinski_fibonacci_int65":f1->"nodeSierpinski_fibonacci_int24":f0
+"nodeSierpinski_fibonacci_int65":f1->"nodeSierpinski_fibonacci_int66":f0
+"nodeSierpinski_fibonacci_int64":f1->"nodeSierpinski_fibonacci_int65":f0
+"nodeSierpinski_fibonacci_int64":f1->"nodeSierpinski_fibonacci_int65":f0
+"nodeSierpinski_factorialRecursivo_int6":f1->"nodeSierpinski_factorialRecursivo_int13":f0
+"nodeSierpinski_factorialRecursivo_int6":f1->"nodeSierpinski_factorialRecursivo_int7":f0
+"nodeSierpinski_factorialRecursivo_int":f1->"nodeSierpinski_factorialRecursivo_int5":f0
+"nodeSierpinski_factorialRecursivo_int":f1->"nodeSierpinski_factorialRecursivo_int4":f0
+"nodeSierpinski_factorialRecursivo_int5":f1->"nodeSierpinski_factorialRecursivo_int7":f0
+"nodeSierpinski_factorialRecursivo_int5":f1->"nodeSierpinski_factorialRecursivo_int6":f0
+"nodeSierpinski_factorialRecursivo_int4":f1->"nodeSierpinski_factorialRecursivo_int5":f0
+"nodeSierpinski_factorialRecursivo_int4":f1->"nodeSierpinski_factorialRecursivo_int5":f0
+"nodeSierpinski_factorialRecursivo_int7":f1->"nodeSierpinski_factorialRecursivo_int36":f0
+"nodeSierpinski_factorialRecursivo_int7":f1->"nodeSierpinski_factorialRecursivo_int13":f0
+"nodeSierpinski_factorialRecursivo_int26":f1->"nodeSierpinski_factorialRecursivo_int36":f0
+"nodeSierpinski_factorialRecursivo_int26":f1->"nodeSierpinski_factorialRecursivo_int36":f0
+"nodeSierpinski_factorialRecursivo_int36":f1->"nodeSierpinski_factorialRecursivo_int42":f0
+"nodeSierpinski_factorialRecursivo_int36":f1->"nodeSierpinski_factorialRecursivo_int42":f0
+"nodeSierpinski_factorialRecursivo_int13":f1->"nodeSierpinski_factorialRecursivo_int":f0
+"nodeSierpinski_factorialRecursivo_int13":f1->"nodeSierpinski_factorialRecursivo_int26":f0
+"nodeSierpinski_factorial_int9":f1->"nodeSierpinski_factorial_int10":f0
+"nodeSierpinski_factorial_int7":f1->"nodeSierpinski_factorial_int9":f0
+"nodeSierpinski_factorial_int7":f1->"nodeSierpinski_factorial_int8":f0
+"nodeSierpinski_factorial_int8":f1->"nodeSierpinski_factorial_int35":f0
+"nodeSierpinski_factorial_int8":f1->"nodeSierpinski_factorial_int9":f0
+"nodeSierpinski_factorial_int6":f1->"nodeSierpinski_factorial_int7":f0
+"nodeSierpinski_factorial_int6":f1->"nodeSierpinski_factorial_int7":f0
+"nodeSierpinski_factorial_int14":f1->"nodeSierpinski_factorial_int15":f0
+"nodeSierpinski_factorial_int14":f1->"nodeSierpinski_factorial_int15":f0
+"nodeSierpinski_factorial_int15":f1->"nodeSierpinski_factorial_int17":f0
+"nodeSierpinski_factorial_int15":f1->"nodeSierpinski_factorial_int16":f0
+"nodeSierpinski_factorial_int16":f1->"nodeSierpinski_factorial_int32":f0
+"nodeSierpinski_factorial_int16":f1->"nodeSierpinski_factorial_int17":f0
+"nodeSierpinski_factorial_int17":f1->"nodeSierpinski_factorial_int10":f0
+"nodeSierpinski_factorial_int17":f1->"nodeSierpinski_factorial_int32":f0
+"nodeSierpinski_factorial_int10":f1->"nodeSierpinski_factorial_int15":f0
+"nodeSierpinski_factorial_int10":f1->"nodeSierpinski_factorial_int14":f0
+"nodeSierpinski_factorial_int32":f1->"nodeSierpinski_factorial_int35":f0
+"nodeSierpinski_factorial_int32":f1->"nodeSierpinski_factorial_int35":f0
+"nodeSierpinski_factorial_int":f1->"nodeSierpinski_factorial_int7":f0
+"nodeSierpinski_factorial_int":f1->"nodeSierpinski_factorial_int6":f0
+"nodeSierpinski_factorial_int35":f1->"nodeSierpinski_factorial_int41":f0
+"nodeSierpinski_factorial_int35":f1->"nodeSierpinski_factorial_int41":f0
+"nodeSierpinski_pruebaFor159":f1->"nodeSierpinski_pruebaFor162":f0
+"nodeSierpinski_pruebaFor159":f1->"nodeSierpinski_pruebaFor160":f0
+"nodeSierpinski_pruebaFor158":f1->"nodeSierpinski_pruebaFor159":f0
+"nodeSierpinski_pruebaFor158":f1->"nodeSierpinski_pruebaFor159":f0
+"nodeSierpinski_pruebaFor336":f1->"nodeSierpinski_pruebaFor37":f0
+"nodeSierpinski_pruebaFor336":f1->"nodeSierpinski_pruebaFor343":f0
+"nodeSierpinski_pruebaFor331":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaFor331":f1->"nodeSierpinski_pruebaFor336":f0
+"nodeSierpinski_pruebaFor330":f1->"nodeSierpinski_pruebaFor331":f0
+"nodeSierpinski_pruebaFor330":f1->"nodeSierpinski_pruebaFor331":f0
+"nodeSierpinski_pruebaFor157":f1->"nodeSierpinski_pruebaFor162":f0
+"nodeSierpinski_pruebaFor157":f1->"nodeSierpinski_pruebaFor158":f0
+"nodeSierpinski_pruebaFor156":f1->"nodeSierpinski_pruebaFor157":f0
+"nodeSierpinski_pruebaFor156":f1->"nodeSierpinski_pruebaFor157":f0
+"nodeSierpinski_pruebaFor153":f1->"nodeSierpinski_pruebaFor157":f0
+"nodeSierpinski_pruebaFor153":f1->"nodeSierpinski_pruebaFor156":f0
+"nodeSierpinski_pruebaFor152":f1->"nodeSierpinski_pruebaFor153":f0
+"nodeSierpinski_pruebaFor152":f1->"nodeSierpinski_pruebaFor153":f0
+"nodeSierpinski_pruebaFor270":f1->"nodeSierpinski_pruebaFor330":f0
+"nodeSierpinski_pruebaFor270":f1->"nodeSierpinski_pruebaFor329":f0
+"nodeSierpinski_pruebaFor50":f1->"nodeSierpinski_pruebaFor51":f0
+"nodeSierpinski_pruebaFor50":f1->"nodeSierpinski_pruebaFor51":f0
+"nodeSierpinski_pruebaFor32":f1->"nodeSierpinski_pruebaFor37":f0
+"nodeSierpinski_pruebaFor54":f1->"nodeSierpinski_pruebaFor56":f0
+"nodeSierpinski_pruebaFor54":f1->"nodeSierpinski_pruebaFor55":f0
+"nodeSierpinski_pruebaFor53":f1->"nodeSierpinski_pruebaFor55":f0
+"nodeSierpinski_pruebaFor53":f1->"nodeSierpinski_pruebaFor54":f0
+"nodeSierpinski_pruebaFor52":f1->"nodeSierpinski_pruebaFor56":f0
+"nodeSierpinski_pruebaFor52":f1->"nodeSierpinski_pruebaFor53":f0
+"nodeSierpinski_pruebaFor":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaFor":f1->"nodeSierpinski_pruebaFor32":f0
+"nodeSierpinski_pruebaFor51":f1->"nodeSierpinski_pruebaFor53":f0
+"nodeSierpinski_pruebaFor51":f1->"nodeSierpinski_pruebaFor52":f0
+"nodeSierpinski_pruebaFor58":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaFor58":f1->"nodeSierpinski_pruebaFor146":f0
+"nodeSierpinski_pruebaFor57":f1->"nodeSierpinski_pruebaFor149":f0
+"nodeSierpinski_pruebaFor57":f1->"nodeSierpinski_pruebaFor58":f0
+"nodeSierpinski_pruebaFor56":f1->"nodeSierpinski_pruebaFor58":f0
+"nodeSierpinski_pruebaFor56":f1->"nodeSierpinski_pruebaFor57":f0
+"nodeSierpinski_pruebaFor55":f1->"nodeSierpinski_pruebaFor56":f0
+"nodeSierpinski_pruebaFor55":f1->"nodeSierpinski_pruebaFor56":f0
+"nodeSierpinski_pruebaFor37":f1->"nodeSierpinski_pruebaFor41":f0
+"nodeSierpinski_pruebaFor37":f1->"nodeSierpinski_pruebaFor40":f0
+"nodeSierpinski_pruebaFor329":f1->"nodeSierpinski_pruebaFor331":f0
+"nodeSierpinski_pruebaFor329":f1->"nodeSierpinski_pruebaFor330":f0
+"nodeSierpinski_pruebaFor269":f1->"nodeSierpinski_pruebaFor270":f0
+"nodeSierpinski_pruebaFor269":f1->"nodeSierpinski_pruebaFor270":f0
+"nodeSierpinski_pruebaFor149":f1->"nodeSierpinski_pruebaFor153":f0
+"nodeSierpinski_pruebaFor149":f1->"nodeSierpinski_pruebaFor152":f0
+"nodeSierpinski_pruebaFor221":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaFor221":f1->"nodeSierpinski_pruebaFor263":f0
+"nodeSierpinski_pruebaFor146":f1->"nodeSierpinski_pruebaFor266":f0
+"nodeSierpinski_pruebaFor146":f1->"nodeSierpinski_pruebaFor149":f0
+"nodeSierpinski_pruebaFor266":f1->"nodeSierpinski_pruebaFor270":f0
+"nodeSierpinski_pruebaFor266":f1->"nodeSierpinski_pruebaFor269":f0
+"nodeSierpinski_pruebaFor343":f1->"nodeSierpinski_pruebaFor344":f0
+"nodeSierpinski_pruebaFor162":f1->"nodeSierpinski_pruebaFor164":f0
+"nodeSierpinski_pruebaFor162":f1->"nodeSierpinski_pruebaFor163":f0
+"nodeSierpinski_pruebaFor161":f1->"nodeSierpinski_pruebaFor162":f0
+"nodeSierpinski_pruebaFor161":f1->"nodeSierpinski_pruebaFor162":f0
+"nodeSierpinski_pruebaFor164":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaFor164":f1->"nodeSierpinski_pruebaFor218":f0
+"nodeSierpinski_pruebaFor263":f1->"nodeSierpinski_pruebaFor266":f0
+"nodeSierpinski_pruebaFor263":f1->"nodeSierpinski_pruebaFor266":f0
+"nodeSierpinski_pruebaFor163":f1->"nodeSierpinski_pruebaFor221":f0
+"nodeSierpinski_pruebaFor163":f1->"nodeSierpinski_pruebaFor164":f0
+"nodeSierpinski_pruebaFor160":f1->"nodeSierpinski_pruebaFor161":f0
+"nodeSierpinski_pruebaFor160":f1->"nodeSierpinski_pruebaFor161":f0
+"nodeSierpinski_pruebaFor43":f1->"nodeSierpinski_pruebaFor47":f0
+"nodeSierpinski_pruebaFor43":f1->"nodeSierpinski_pruebaFor46":f0
+"nodeSierpinski_pruebaFor42":f1->"nodeSierpinski_pruebaFor343":f0
+"nodeSierpinski_pruebaFor42":f1->"nodeSierpinski_pruebaFor43":f0
+"nodeSierpinski_pruebaFor41":f1->"nodeSierpinski_pruebaFor43":f0
+"nodeSierpinski_pruebaFor41":f1->"nodeSierpinski_pruebaFor42":f0
+"nodeSierpinski_pruebaFor40":f1->"nodeSierpinski_pruebaFor41":f0
+"nodeSierpinski_pruebaFor40":f1->"nodeSierpinski_pruebaFor41":f0
+"nodeSierpinski_pruebaFor47":f1->"nodeSierpinski_pruebaFor51":f0
+"nodeSierpinski_pruebaFor47":f1->"nodeSierpinski_pruebaFor50":f0
+"nodeSierpinski_pruebaFor46":f1->"nodeSierpinski_pruebaFor47":f0
+"nodeSierpinski_pruebaFor46":f1->"nodeSierpinski_pruebaFor47":f0
+"nodeSierpinski_pruebaFor218":f1->"nodeSierpinski_pruebaFor266":f0
+"nodeSierpinski_pruebaFor218":f1->"nodeSierpinski_pruebaFor221":f0
+"nodeSierpinski_setCanvas_int_int_int_int_int24":f1->"nodeSierpinski_setCanvas_int_int_int_int_int25":f0
+"nodeSierpinski_setCanvas_int_int_int_int_int":f1->"nodeLienzo_int_int_int_int_int":f0
+"nodeSierpinski_setCanvas_int_int_int_int_int":f1->"nodeSierpinski_setCanvas_int_int_int_int_int24":f0
+"nodeSierpinski_setCanvas_Canvas":f1->"nodeCanvas_getAlto":f0
+"nodeSierpinski_setCanvas_Canvas":f1->"nodeSierpinski_setCanvas_Canvas8":f0
+"nodeSierpinski_setCanvas_Canvas8":f1->"nodeCanvas_getAncho":f0
+"nodeSierpinski_setCanvas_Canvas8":f1->"nodeSierpinski_setCanvas_Canvas18":f0
+"nodeSierpinski_setCanvas_Canvas60":f1->"nodeSierpinski_setCanvas_Canvas61":f0
+"nodeSierpinski_setCanvas_Canvas18":f1->"nodeLienzo_int_int_int_int_int":f0
+"nodeSierpinski_setCanvas_Canvas18":f1->"nodeSierpinski_setCanvas_Canvas60":f0
+"nodeSierpinski_pruebaSwitch166":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaSwitch166":f1->"nodeSierpinski_pruebaSwitch237":f0
+"nodeSierpinski_pruebaSwitch8":f1->"nodeSierpinski_pruebaSwitch9":f0
+"nodeSierpinski_pruebaSwitch8":f1->"nodeSierpinski_pruebaSwitch9":f0
+"nodeSierpinski_pruebaSwitch245":f1->"nodeSierpinski_pruebaSwitch246":f0
+"nodeSierpinski_pruebaSwitch9":f1->"nodeSierpinski_pruebaSwitch11":f0
+"nodeSierpinski_pruebaSwitch9":f1->"nodeSierpinski_pruebaSwitch10":f0
+"nodeSierpinski_pruebaSwitch164":f1->"nodeSierpinski_pruebaSwitch239":f0
+"nodeSierpinski_pruebaSwitch164":f1->"nodeSierpinski_pruebaSwitch166":f0
+"nodeSierpinski_pruebaSwitch92":f1->"nodeSierpinski_pruebaSwitch93":f0
+"nodeSierpinski_pruebaSwitch92":f1->"nodeSierpinski_pruebaSwitch93":f0
+"nodeSierpinski_pruebaSwitch93":f1->"nodeSierpinski_pruebaSwitch95":f0
+"nodeSierpinski_pruebaSwitch93":f1->"nodeSierpinski_pruebaSwitch94":f0
+"nodeSierpinski_pruebaSwitch94":f1->"nodeSierpinski_pruebaSwitch166":f0
+"nodeSierpinski_pruebaSwitch94":f1->"nodeSierpinski_pruebaSwitch95":f0
+"nodeSierpinski_pruebaSwitch95":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaSwitch95":f1->"nodeSierpinski_pruebaSwitch164":f0
+"nodeSierpinski_pruebaSwitch89":f1->"nodeSierpinski_pruebaSwitch93":f0
+"nodeSierpinski_pruebaSwitch89":f1->"nodeSierpinski_pruebaSwitch92":f0
+"nodeSierpinski_pruebaSwitch10":f1->"nodeSierpinski_pruebaSwitch245":f0
+"nodeSierpinski_pruebaSwitch10":f1->"nodeSierpinski_pruebaSwitch11":f0
+"nodeSierpinski_pruebaSwitch87":f1->"nodeSierpinski_pruebaSwitch239":f0
+"nodeSierpinski_pruebaSwitch87":f1->"nodeSierpinski_pruebaSwitch89":f0
+"nodeSierpinski_pruebaSwitch11":f1->"nodeSierpinski_pruebaSwitch15":f0
+"nodeSierpinski_pruebaSwitch11":f1->"nodeSierpinski_pruebaSwitch14":f0
+"nodeSierpinski_pruebaSwitch16":f1->"nodeSierpinski_pruebaSwitch89":f0
+"nodeSierpinski_pruebaSwitch16":f1->"nodeSierpinski_pruebaSwitch17":f0
+"nodeSierpinski_pruebaSwitch17":f1->"nodeImprimir_string":f0
+"nodeSierpinski_pruebaSwitch17":f1->"nodeSierpinski_pruebaSwitch87":f0
+"nodeSierpinski_pruebaSwitch14":f1->"nodeSierpinski_pruebaSwitch15":f0
+"nodeSierpinski_pruebaSwitch14":f1->"nodeSierpinski_pruebaSwitch15":f0
+"nodeSierpinski_pruebaSwitch15":f1->"nodeSierpinski_pruebaSwitch17":f0
+"nodeSierpinski_pruebaSwitch15":f1->"nodeSierpinski_pruebaSwitch16":f0
+"nodeSierpinski_pruebaSwitch237":f1->"nodeSierpinski_pruebaSwitch239":f0
+"nodeSierpinski_pruebaSwitch237":f1->"nodeSierpinski_pruebaSwitch239":f0
+"nodeSierpinski_pruebaSwitch4":f1->"nodeSierpinski_pruebaSwitch9":f0
+"nodeSierpinski_pruebaSwitch4":f1->"nodeSierpinski_pruebaSwitch8":f0
+"nodeSierpinski_pruebaSwitch":f1->"nodeSierpinski_pruebaSwitch4":f0
+"nodeSierpinski_pruebaSwitch239":f1->"nodeSierpinski_pruebaSwitch4":f0
+"nodeSierpinski_pruebaSwitch239":f1->"nodeSierpinski_pruebaSwitch245":f0
+"nodeSierpinski_main37":f1->"nodeTexto_string_int_int_int_int_int":f0
+"nodeSierpinski_main37":f1->"nodeSierpinski_main56":f0
+"nodeSierpinski_main59":f1->"nodeFigura_paint":f0
+"nodeSierpinski_main59":f1->"nodeSierpinski_main70":f0
+"nodeSierpinski_main":f1->"nodeSierpinski_init":f0
+"nodeSierpinski_main":f1->"nodeSierpinski_main8":f0
+"nodeSierpinski_main22":f1->"nodeSierpinski_setCanvas_Canvas":f0
+"nodeSierpinski_main22":f1->"nodeSierpinski_main37":f0
+"nodeSierpinski_main77":f1->"nodeSierpinski_pruebaFor":f0
+"nodeSierpinski_main77":f1->"nodeSierpinski_main84":f0
+"nodeSierpinski_main56":f1->"nodeFigura_Figura":f0
+"nodeSierpinski_main56":f1->"nodeSierpinski_main59":f0
+"nodeSierpinski_main84":f1->"nodeSierpinski_factorial_int":f0
+"nodeSierpinski_main84":f1->"nodeSierpinski_main97":f0
+"nodeSierpinski_main97":f1->"nodeSierpinski_fibonacci_int":f0
+"nodeSierpinski_main97":f1->"nodeSierpinski_main169":f0
+"nodeSierpinski_main339":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main339":f1->"nodeSierpinski_main346":f0
+"nodeSierpinski_main70":f1->"nodeFigura_paintFiguras":f0
+"nodeSierpinski_main70":f1->"nodeSierpinski_main77":f0
+"nodeSierpinski_main319":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main319":f1->"nodeSierpinski_main326":f0
+"nodeSierpinski_main346":f1->"nodeSierpinski_pruebaSwitch":f0
+"nodeSierpinski_main346":f1->"nodeSierpinski_main353":f0
+"nodeSierpinski_main326":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main326":f1->"nodeSierpinski_main332":f0
+"nodeSierpinski_main359":f1->"nodeSierpinski_main360":f0
+"nodeSierpinski_main8":f1->"nodeCanvas_Canvas_int_int_Array":f0
+"nodeSierpinski_main8":f1->"nodeSierpinski_main22":f0
+"nodeSierpinski_main353":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main353":f1->"nodeSierpinski_main359":f0
+"nodeSierpinski_main310":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main310":f1->"nodeSierpinski_main319":f0
+"nodeSierpinski_main332":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main332":f1->"nodeSierpinski_main339":f0
+"nodeSierpinski_main234":f1->"nodeSierpinski_factorialRecursivo_int":f0
+"nodeSierpinski_main234":f1->"nodeSierpinski_main310":f0
+"nodeSierpinski_main169":f1->"nodeImprimir_string":f0
+"nodeSierpinski_main169":f1->"nodeSierpinski_main234":f0
+"nodeSierpinski_init":f1->"nodeSierpinski_init91":f0
+"nodeFigura_paintFiguras":f1->"nodeArco_int_int_int_int_int_int_int_int_int_bool":f0
+"nodeFigura_paintFiguras":f1->"nodeFigura_paintFiguras23":f0
+"nodeFigura_paintFiguras80":f1->"nodeFigura_paintFiguras182":f0
+"nodeFigura_paintFiguras61":f1->"nodeOvalo_int_int_int_int_int_int_int_bool":f0
+"nodeFigura_paintFiguras61":f1->"nodeFigura_paintFiguras80":f0
+"nodeFigura_paintFiguras42":f1->"nodeOvalo_int_int_int_int_int_int_int_bool":f0
+"nodeFigura_paintFiguras42":f1->"nodeFigura_paintFiguras61":f0
+"nodeFigura_paintFiguras23":f1->"nodeRectangulo_int_int_int_int_int_int_int_bool":f0
+"nodeFigura_paintFiguras23":f1->"nodeFigura_paintFiguras42":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float108":f1->"nodeFigura_paintRecursivo_int_float_float_float_float109":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float108":f1->"nodeFigura_paintRecursivo_int_float_float_float_float109":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float449":f1->"nodeFigura_paintRecursivo_int_float_float_float_float452":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float449":f1->"nodeFigura_paintRecursivo_int_float_float_float_float452":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float109":f1->"nodeFigura_paintRecursivo_int_float_float_float_float111":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float109":f1->"nodeFigura_paintRecursivo_int_float_float_float_float110":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float111":f1->"nodeLinea_int_int_int_int_int_int_int":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float111":f1->"nodeFigura_paintRecursivo_int_float_float_float_float196":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float365":f1->"nodeFigura_paintRecursivo_int_float_float_float_float":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float365":f1->"nodeFigura_paintRecursivo_int_float_float_float_float393":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float421":f1->"nodeFigura_paintRecursivo_int_float_float_float_float":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float421":f1->"nodeFigura_paintRecursivo_int_float_float_float_float449":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float":f1->"nodeFigura_paintRecursivo_int_float_float_float_float109":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float":f1->"nodeFigura_paintRecursivo_int_float_float_float_float108":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float279":f1->"nodeLinea_int_int_int_int_int_int_int":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float279":f1->"nodeFigura_paintRecursivo_int_float_float_float_float362":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float393":f1->"nodeFigura_paintRecursivo_int_float_float_float_float":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float393":f1->"nodeFigura_paintRecursivo_int_float_float_float_float421":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float196":f1->"nodeLinea_int_int_int_int_int_int_int":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float196":f1->"nodeFigura_paintRecursivo_int_float_float_float_float279":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float362":f1->"nodeFigura_paintRecursivo_int_float_float_float_float452":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float362":f1->"nodeFigura_paintRecursivo_int_float_float_float_float365":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float110":f1->"nodeFigura_paintRecursivo_int_float_float_float_float365":f0
+"nodeFigura_paintRecursivo_int_float_float_float_float110":f1->"nodeFigura_paintRecursivo_int_float_float_float_float111":f0
+"nodeFigura_paint":f1->"nodeFigura_paintRecursivo_int_float_float_float_float":f0
+"nodeFigura_paint":f1->"nodeFigura_paint38":f0
+"nodeFigura_paint38":f1->"nodeFigura_paint39":f0
+"nodeFigura_Figura":f1->"nodeFigura_Figura42":f0
+"nodeCanvas_getAncho":f1->"nodeCanvas_getAncho8":f0
+"nodeCanvas_getAncho":f1->"nodeCanvas_getAncho8":f0
+"nodeCanvas_getAlto":f1->"nodeCanvas_getAlto8":f0
+"nodeCanvas_getAlto":f1->"nodeCanvas_getAlto8":f0
+"nodeCanvas_Canvas_int_int_Array":f1->"nodeCanvas_Canvas_int_int_Array24":f0
+}

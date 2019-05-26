@@ -1,0 +1,16 @@
+public class Canvas{
+	private int alto
+	private int ancho
+	public Array<int> color
+	public Canvas(int alto,int ancho,Array<int> color){
+		this.alto = alto
+		this.ancho = ancho
+		this.color = color
+	}
+	public int getAlto(){
+		return alto
+	}
+	public int getAncho(){
+		return ancho
+	}
+}

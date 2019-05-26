@@ -1,0 +1,97 @@
+package parsers.pj;
+import gui.forms.Project;
+import java.util.Stack;
+
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    
+
+    /**Metodo al que se llama automaticamente ante algun error sintactico.*/
+    public void syntax_error(Symbol s){
+		//ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+		//ErrorManager.setDesc("");
+        System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+        
+    }
+   
+
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+		//ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+		//ErrorManager.setDesc("");
+		System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    }
+
+:}
+action code
+{:
+	
+:}
+
+
+terminal OPEN;
+terminal CLOSE;
+terminal PROYECTO;
+terminal NOMBRE;
+terminal RUTA;
+terminal ARCHIVOS;
+terminal ARCHIVO;
+terminal PRINCIPAL;
+terminal PRECLOSE;
+terminal EQL; 
+terminal String CAD;
+
+
+
+/*Declaracion de simbolos NO terminales*/
+non terminal program;
+non terminal Project project;
+non terminal Stack<String> files;
+non terminal Stack<String> list_files;
+non terminal String file;
+non terminal String main;
+
+
+program::= project:p {:ProjectManager.addProject(p);:};
+
+project::= OPEN PROYECTO NOMBRE EQL CAD:nombre  RUTA EQL CAD:ruta CLOSE  files:fs main:m OPEN PRECLOSE PROYECTO CLOSE
+	{:
+		RESULT = new Project(nombre, ruta, fs,m);
+	:}
+	| OPEN PROYECTO RUTA EQL CAD:ruta NOMBRE EQL CAD:nombre CLOSE  files:fs main:m OPEN PRECLOSE PROYECTO CLOSE
+	{:
+		RESULT = new Project(nombre, ruta, fs,m);
+	:}
+	|OPEN PROYECTO NOMBRE EQL CAD:nombre  RUTA EQL CAD:ruta CLOSE  files:fs OPEN PRECLOSE PROYECTO CLOSE
+	{:
+		RESULT = new Project(nombre, ruta, fs);
+	:}
+	|OPEN PROYECTO RUTA EQL CAD:ruta NOMBRE EQL CAD:nombre  CLOSE  files:fs OPEN PRECLOSE PROYECTO CLOSE
+	{:
+		RESULT = new Project(nombre, ruta, fs);
+	:};
+
+files ::= OPEN ARCHIVOS CLOSE list_files:files OPEN PRECLOSE ARCHIVOS CLOSE {:RESULT = files;:} ;
+
+list_files ::= list_files:files file:f
+		{:
+			files.push(f);
+			RESULT = files;
+		:}
+		|file:f
+		{:
+			Stack<String> files = new Stack<>();
+			files.push(f);
+			RESULT = files;
+		:};
+		
+file ::=  OPEN ARCHIVO NOMBRE EQL CAD:f PRECLOSE CLOSE {:RESULT = f;:};
+main::= OPEN PRINCIPAL CLOSE file:main OPEN PRECLOSE PRINCIPAL CLOSE {: RESULT = main; :};
+
+	
+
+	
+/*-----------------------------------FIN DEL ARCHIVO*---------------------------------------*/

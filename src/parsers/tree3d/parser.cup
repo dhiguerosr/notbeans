@@ -1,0 +1,496 @@
+package parsers.tree3d;
+import gui.forms.ProjectManager;
+import java.util.Stack;
+import java_cup.runtime.Symbol;
+import parsers.frc.managers.*;
+import parsers.tree3d.nodes.Node;
+import parsers.tree3d.nodes.arithmetics.*;
+import parsers.tree3d.nodes.expressions.*;
+import parsers.tree3d.nodes.logics.*;
+import parsers.tree3d.nodes.statements.*;
+
+parser code
+{:
+    
+
+    /**Metodo al que se llama automaticamente ante algun error sintactico.*/
+    public void syntax_error(Symbol s){
+        ErrorManager.add(String.valueOf(s.value),s.right,s.left,Err.SYNTACTIC);
+    }
+   
+
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+		ErrorManager.add(String.valueOf(s.value),s.right,s.left,Err.SYNTACTIC);
+    }
+
+:}
+action code
+{:
+	public static int tempCount = 0;
+	public static String genTemp(){
+		String t = "t"+tempCount;
+		tempCount++;
+		return t;
+	}
+:}
+
+/*Declaracion de simbolos terminales*/
+terminal String FILE;
+terminal IMPORT;
+terminal PUBLIC;
+terminal PRIVATE;
+terminal VOID;
+terminal ARRAY;
+terminal SWITCH;
+terminal CASE;
+terminal BREAK;
+terminal DEFAULT;
+terminal IF;
+terminal ELSE;
+terminal CONTINUE;
+terminal FOR;
+terminal DO;
+terminal WHILE;
+terminal NEW;
+terminal INT;
+terminal FLOAT;
+terminal BOOL;
+terminal STRING;
+terminal CHAR;
+terminal String LINEA;
+terminal String TEXTO;
+terminal String ARC0;
+terminal String RECTANGULO;
+terminal String OVALO;
+terminal String POLIGONO;
+terminal String LIENZO;
+terminal String IMPRIMIR;
+terminal SHARP;
+terminal LESS;
+terminal GREATER;
+terminal DOT;
+terminal LPAREN;
+terminal RPAREN;
+terminal LBRACKET;
+terminal RBRACKET;
+terminal EQL;
+terminal PLUS;
+terminal MINUS;
+terminal UMINUS;
+terminal DIV;
+terminal TIMES;
+terminal REF;
+terminal COMA;
+terminal LHOOK;
+terminal RHOOK;
+terminal PLUSPLUS;
+terminal MINUSMINUS;
+terminal POW;
+terminal PLUSEQUALS;
+terminal MINUSEQUALS;
+terminal TIMESEQUALS;
+terminal DIVEQUALS;
+terminal AND;
+terminal OR;
+terminal NOT;
+terminal EQUALS;
+terminal NOTEQL;
+terminal GEQL;
+terminal LEQL;
+terminal ASK;
+terminal COLON;
+terminal TRUE;
+terminal FALSE;
+terminal NULL;
+terminal THIS;
+terminal RETURN;
+terminal CLASS;
+terminal EXTENDS;
+terminal STATIC;
+terminal String ID;
+terminal String CAD;
+terminal String CHR;
+terminal String NUM;
+terminal String DEC;
+terminal NEWLINE;
+
+
+/*Declaracion de simbolos NO terminales*/
+non terminal program;
+non terminal init_import;
+non terminal list_import;
+non terminal dec_import;
+
+non terminal Node init_class;
+non terminal Stack<Node> class_body;
+non terminal Stack<Node> list_class_expr;
+non terminal new_line;
+non terminal Integer visibility;
+
+non terminal Boolean is_static;
+non terminal Node declaration;
+non terminal Node var_dec;
+non terminal Type prim_type;
+non terminal Type var_type;
+non terminal Stack<String> var_list;
+non terminal Type array_type;
+non terminal String params;
+non terminal String list_params;
+non terminal String param;
+
+non terminal Stack<Node> method_instructions;
+non terminal Stack<Node> method_list_instructions;
+non terminal Node instruction;
+non terminal Node non_dec_instruction;
+
+non terminal Node assign;
+non terminal assign_op;
+non terminal Stack<Node> list_dim_array;
+non terminal Node dim;
+non terminal Node expression;
+
+non terminal Node while_statement;
+non terminal Node do_while_statement;
+non terminal Node for_statement;
+non terminal Node for_init;
+non terminal Node if_statement;
+non terminal Node switch_statement;
+non terminal Stack<Case> list_case;
+non terminal Case case_sentence;
+non terminal Stack<Node> loop_inst;
+non terminal Stack<Node> loop_inst_list;
+non terminal Stack<Node> loop_instructions;
+non terminal Stack<Node> for_instructions;
+
+non terminal Node op_ternario;
+non terminal Node logic_expression;
+non terminal Node arit_expression;
+non terminal Node instance;
+non terminal Node method_call;
+non terminal Node cast_value;
+
+non terminal Node var_call;
+non terminal Node var_dec_assign;
+non terminal Value value;
+non terminal Stack<Node> args;
+non terminal Stack<Node> arg_list;
+
+non terminal Node this_var_method_call;
+non terminal Node this_var_call;
+non terminal Node this_method_call;
+non terminal Node var_method_call;
+
+non terminal Node simple_call;
+non terminal Node simple_var_call;
+non terminal Node simple_method_call;
+non terminal Node call_list;
+non terminal Stack<Node> if_instructions;
+/*PRECEDENCES*/
+
+precedence left OR;
+precedence left AND;
+precedence left NOT;
+precedence left EQUALS;
+precedence left NOTEQL;
+precedence left GEQL;
+precedence left LEQL;
+precedence left GREATER;
+precedence left LESS;
+precedence left PLUS, MINUS;
+precedence left TIMES, DIV;
+precedence left POW;
+precedence left UMINUS;
+
+//precedence left ELSE;
+
+/*GRAMMAR START*/
+start with program;
+
+program::= NEWLINE init_import
+	|init_import;
+
+init_import::= list_import init_class
+	|init_class;
+
+list_import::= dec_import NEWLINE list_import
+	|dec_import NEWLINE
+	|error NEWLINE list_import;
+
+
+dec_import::= SHARP IMPORT FILE:f{:
+	String file = f.replaceAll("<","").replaceAll(">","");
+	String f_path = ProjectManager.getFile(file);
+        String cfile = SymbolTableManager.getCurrentFile();
+	ICParser.parse(f_path);
+	SymbolTableManager.setCurrentFile(cfile);
+:};										
+
+
+init_class::=PUBLIC CLASS ID:id EXTENDS ID:type new_line LBRACKET class_body:nodes 	{:RESULT = new Clazz(id,type,nodes);RESULT.genCode();:}
+	| PUBLIC CLASS ID:id new_line LBRACKET class_body:nodes						 	{:RESULT = new Clazz(id,nodes);RESULT.genCode();:};						
+	
+
+class_body::= new_line list_class_expr:nodes RBRACKET new_line						{:RESULT = nodes;:}					
+			|new_line RBRACKET new_line												{:RESULT = new Stack<>();:};
+
+list_class_expr::= declaration:node NEWLINE list_class_expr:nodes					{:nodes.push(node);RESULT = nodes;:}
+			|declaration:node NEWLINE												{:RESULT = new Stack<>();RESULT.push(node);:}
+			|error NEWLINE list_class_expr											{:RESULT = new Stack<>();:};
+
+declaration::=visibility:access is_static:_s var_type:type ID:id COMA var_list:ids var_dec_assign
+			|visibility:access is_static:_s var_type:type ID:id var_dec_assign
+			|visibility:access is_static:_s var_type:type ID:id LPAREN params:p RPAREN new_line LBRACKET new_line method_instructions:nodes RBRACKET	{:RESULT = new Method(id,p,nodes);:}
+			|visibility:access is_static:_s ID:type ID:id COMA var_list:ids var_dec_assign
+			|visibility:access is_static:_s ID:type ID:id var_dec_assign
+			|visibility:access is_static:_s ID:type ID:id LPAREN params:p RPAREN new_line LBRACKET new_line method_instructions:nodes RBRACKET			{:RESULT = new Method(id,p,nodes);:}	
+			|visibility:access is_static:_s VOID ID:id  LPAREN params:p	RPAREN new_line LBRACKET new_line method_instructions:nodes RBRACKET			{:RESULT = new Method(id,p,nodes);:}
+			|visibility:access is_static:_s ID:id LPAREN params:p RPAREN new_line LBRACKET new_line method_instructions:nodes RBRACKET					{:RESULT = new Method(id,p,nodes);:};
+
+method_instructions::= method_list_instructions:ins 							{:RESULT = ins;:}
+			|																	{:RESULT = new Stack<>();:};
+
+method_list_instructions::= instruction:i NEWLINE method_list_instructions:ins	{:ins.push(i);RESULT = ins;:}
+			|instruction:i NEWLINE												{:RESULT = new Stack<>();RESULT.push(i);:}
+			|error NEWLINE method_instructions;
+
+params::= list_params:syms 						{:RESULT = "_"+syms;:}
+		|										{:RESULT = "";:};
+		
+list_params ::= param:p COMA list_params:syms	{:RESULT = p + "_" + syms;:}
+		|param:p								{:RESULT = p;:};
+
+param::= REF prim_type:type ID:id				{:RESULT = type.getName();:}
+		|var_type:type ID:id					{:RESULT = type.getName();:}
+		|ID:type ID:id 							{:RESULT = type;:};
+
+var_dec_assign ::= EQL expression:t 	{:RESULT = t;:}
+				|						{:RESULT = null;:};
+				
+var_type::= prim_type:type		{:RESULT = type;:}				
+			| array_type:type	{:RESULT = type;:};
+			
+prim_type::= INT 		{:RESULT = SymbolTableManager.getType("int");:}		
+			| FLOAT		{:RESULT = SymbolTableManager.getType("float");:}		
+			| BOOL		{:RESULT = SymbolTableManager.getType("bool");:}	
+			| STRING 	{:RESULT = SymbolTableManager.getType("string");:}	
+			| CHAR		{:RESULT = SymbolTableManager.getType("char");:};	
+			
+array_type::= ARRAY LESS var_type:type GREATER{:
+			Type t = new Type("Array");
+			t.setSubtype(type);
+			RESULT = t;
+			:}
+			| ARRAY LESS ID:type GREATER{:
+				Type t = new Type("Array");
+				t.setSubtype(SymbolTableManager.getType(type));
+				RESULT = t;
+			:};
+
+var_list::= ID:id COMA var_list:ids{:
+				ids.push(id);
+				RESULT = ids;
+			:}
+			| ID:id {:
+				Stack<String> ids = new Stack<>();
+				ids.push(id);
+				RESULT = ids;
+			:};
+
+
+value::= NUM:n	{: 
+			Type t = SymbolTableManager.getType("int");
+			Value v = new Value(n,t);
+			RESULT = v;
+		:}
+		|DEC:dec	{: 
+			Type t = SymbolTableManager.getType("float");
+			Value v = new Value(dec,t);
+			RESULT = v;
+		:}
+		|CAD:cad	{: 
+			Type t = SymbolTableManager.getType("string");
+			Value v = new Value(cad,t);
+			RESULT = v;
+			
+		:}
+		|CHR:chr	{: 
+			Type t = SymbolTableManager.getType("char");
+			Value v = new Value(chr,t);
+			RESULT = v;
+		:}
+		|TRUE	{: 
+			Type t = SymbolTableManager.getType("bool");
+			Value v = new Value(1,t);
+			RESULT = v;
+		:}
+		|FALSE	{: 
+			Type t = SymbolTableManager.getType("bool");
+			Value v = new Value(0,t);
+			RESULT = v;
+		:};
+
+instruction::= var_dec:dec				{:RESULT = dec;:}
+		|non_dec_instruction:n_dec		{:RESULT = n_dec;:};
+		
+non_dec_instruction::= 	assign:t					{:RESULT = t;:}
+		|while_statement:t							{:RESULT = t;:}
+		|do_while_statement:t						{:RESULT = t;:}
+		|for_statement:t							{:RESULT = t;:}	
+		|if_statement:t								{:RESULT = t;:}	
+		|switch_statement:t							{:RESULT = t;:}	
+		|this_method_call:t							{:RESULT = t;:}
+		|BREAK										{:RESULT = new Break();:}
+		|CONTINUE									{:RESULT = new Continue();:}
+		|RETURN expression:exp						{:RESULT = new Return(exp);:}
+		|RETURN										{:RESULT = new Return();:}
+		|TEXTO:id LPAREN arg_list:args RPAREN		{:RESULT = new NativeMethodCall(id,args);:}
+		|LIENZO:id LPAREN arg_list:args RPAREN		{:RESULT = new NativeMethodCall(id,args);:}
+		|IMPRIMIR:id LPAREN arg_list:args RPAREN	{:RESULT = new NativeMethodCall(id,args);:}
+		|OVALO:id LPAREN arg_list:args RPAREN		{:RESULT = new NativeMethodCall(id,args);:}
+		|LINEA:id LPAREN arg_list:args RPAREN		{:RESULT = new NativeMethodCall(id,args);:}
+		|POLIGONO:id LPAREN arg_list:args RPAREN	{:RESULT = new NativeMethodCall(id,args);:}
+		|RECTANGULO:id LPAREN arg_list:args RPAREN	{:RESULT = new NativeMethodCall(id,args);:}
+		|ARC0:id LPAREN arg_list:args RPAREN		{:RESULT = new NativeMethodCall(id,args);:};
+		
+assign::= this_var_call:e1 assign_op expression:e2				{:RESULT = new Assign(e1,e2);:}
+		|this_var_call:e1 PLUSPLUS								{:RESULT = new Assign(e1,new Add(e1,new Value(1,SymbolTableManager.getType("int"))));:}
+		|this_var_call:e1 MINUSMINUS							{:RESULT = new Assign(e1,new Sub(e1,new Value(1,SymbolTableManager.getType("int"))));:};
+
+list_dim_array::= dim:exp list_dim_array:exps 					{:exps.push(exp);RESULT = exps;:}
+		|dim:exp												{:RESULT = new Stack<>();RESULT.push(exp);:};
+		
+dim::= LHOOK expression:exp RHOOK  								{:RESULT = exp;:};
+
+var_dec::= var_type:type var_list:vars EQL expression:e1		{:RESULT = new Assign(vars,type,e1);:}
+		|ID:t var_list:vars EQL expression:e1 					{:RESULT = new Assign(vars,SymbolTableManager.getType(t),e1);:}
+		|var_type:type var_list:ids								{:RESULT = null;:}
+		|ID:type var_list:ids									{:RESULT = null;:};
+
+
+assign_op::= EQL
+		|PLUSEQUALS
+		|MINUSEQUALS
+		|TIMESEQUALS
+		|DIVEQUALS;
+
+while_statement::= WHILE LPAREN expression:exp RPAREN  loop_instructions:ins 												{:RESULT = new While(exp,ins);:};
+
+do_while_statement::= DO new_line LBRACKET  new_line loop_inst:ins RBRACKET new_line WHILE LPAREN expression:exp RPAREN 	{:RESULT = new DoWhile(exp,ins);:};
+ 
+for_statement::= FOR LPAREN  for_init:assign COMA expression:exp COMA assign:inc RPAREN for_instructions:ins				{:RESULT = new For(assign,exp,inc,ins);:};
+
+for_instructions::= new_line LBRACKET new_line loop_inst:ins RBRACKET 	{:RESULT = ins;:}
+	|new_line non_dec_instruction:i										{:RESULT = new Stack<>();RESULT.push(i);:};
+	
+for_init::= var_type:type ID:id  EQL expression:t  	{: RESULT = new Assign(new VarCall(id),t);:}
+		| assign:t 								 	{: RESULT = t;:};
+
+loop_instructions::= new_line LBRACKET new_line loop_inst:ins RBRACKET 	{:RESULT = ins;:}	
+	|new_line non_dec_instruction:i										{:RESULT = new Stack<>();RESULT.push(i);:};
+
+loop_inst::= loop_inst_list:ins											{:RESULT = ins;:}
+	|																	{:RESULT = new Stack<>();:};
+	
+loop_inst_list::= instruction:i NEWLINE loop_inst_list:ins				{:ins.push(i);RESULT = ins;:}
+	| instruction:i NEWLINE												{:RESULT = new Stack<>();RESULT.push(i);:}
+	| error NEWLINE loop_inst_list										{:RESULT = new Stack<>();:};
+
+
+if_instructions::= new_line LBRACKET new_line loop_inst:ins RBRACKET						{:RESULT = ins;:};	
+	
+if_statement::= IF LPAREN expression:exp RPAREN if_instructions:ins ELSE if_statement:nif	{:If _if = new If(exp,ins);_if.setNextNode(nif);RESULT = _if;:}
+	|IF LPAREN expression:exp RPAREN if_instructions:ins ELSE if_instructions:e				{:If _if = new If(exp,ins);_if.setElseNodes(e);RESULT = _if;:}
+	|IF LPAREN expression:exp RPAREN if_instructions:ins									{:RESULT = new If(exp,ins);:};
+	
+switch_statement::= SWITCH LPAREN this_var_call:var RPAREN new_line LBRACKET NEWLINE list_case:cases RBRACKET {:RESULT = new Switch(var,cases);:};
+
+list_case::= case_sentence:c list_case:cases						{:cases.push(c);RESULT = cases;:}
+	|case_sentence:c												{:RESULT = new Stack<>();RESULT.push(c);:};					
+
+case_sentence::= CASE value:v COLON NEWLINE loop_inst_list:ins		{:RESULT = new Case(v,ins);:}
+				|DEFAULT COLON NEWLINE loop_inst_list:ins			{:RESULT = new Case(ins);:};
+
+expression::= op_ternario:t		{:RESULT = t;:}
+		|logic_expression:t		{:RESULT = t;:}
+		|arit_expression:t		{:RESULT = t;:}
+		|instance:t				{:RESULT = t;:}
+		|value:t				{:RESULT = t;:}
+		|cast_value:t			{:RESULT = t;:}
+		|this_var_method_call:t {:RESULT = t;:}
+		|NULL 					{:RESULT = null;:};
+		
+logic_expression::= expression:e1 OR expression:e2	{:RESULT = new Or(e1,e2);:}
+		|expression:e1 AND expression:e2			{:RESULT = new And(e1,e2);:}
+		|NOT expression:e1							{:RESULT = new Not(e1);:}
+		|expression:e1 EQUALS expression:e2			{:RESULT = new Comparation(e1,e2,"==");:}
+		|expression:e1 NOTEQL expression:e2			{:RESULT = new Comparation(e1,e2,"!=");:}
+		|expression:e1 GEQL expression:e2			{:RESULT = new Comparation(e1,e2,">=");:}
+		|expression:e1 GREATER expression:e2		{:RESULT = new Comparation(e1,e2,">");:}
+		|expression:e1 LEQL expression:e2			{:RESULT = new Comparation(e1,e2,"<=");:}
+		|expression:e1 LESS expression:e2			{:RESULT = new Comparation(e1,e2,"<");:};
+
+arit_expression::= expression:e1 PLUS expression:e2	{:RESULT = new Add(e1,e2);:}
+		|expression:e1 MINUS expression:e2			{:RESULT = new Sub(e1,e2);:}
+		|expression:e1 TIMES expression:e2			{:RESULT = new Mul(e1,e2);:}
+		|expression:e1 DIV expression:e2			{:RESULT = new Div(e1,e2);:}
+		|expression:e1 POW expression:e2			{:RESULT = new Pow(e1,e2);:}
+		|LPAREN expression:e1 RPAREN				{:RESULT = e1;:}
+		|MINUS expression:e1 						{:RESULT = new Mul(e1, new Value(-1,SymbolTableManager.getType("int")));:}%prec UMINUS;
+		
+op_ternario::= LPAREN expression:lt RPAREN ASK LBRACKET expression:e1 RBRACKET  COLON LBRACKET expression:e2 RBRACKET	{:RESULT = new Ask(lt,e1,e2);:}
+		| LPAREN expression:lt RPAREN ASK  expression:e1  COLON  expression:e2											{:RESULT = new Ask(lt,e1,e2);:};
+			
+instance ::= NEW ID:id LPAREN arg_list:args RPAREN		{:RESULT = new Instance(id,args);:}
+		|NEW ARRAY LPAREN arg_list:args RPAREN			{:RESULT = new ArrayInstance(args);:};  
+				
+simple_method_call::= ID:id LPAREN arg_list:args RPAREN	{:RESULT = new MethodCall(id,args);:};
+	
+		
+arg_list::= args:tipos								{:RESULT = tipos;:}
+	|												{:RESULT = new Stack<>();:};
+args::= expression:t COMA args:tipos				{:tipos.push(t);RESULT = tipos;:}
+	|expression:t									{:Stack<Node> tipos = new Stack<>();tipos.push(t);RESULT = tipos;:};
+
+this_method_call ::= THIS DOT method_call:t 		{:VarCall t1 = new VarCall("this"); t1.setNext(t); RESULT = t1;:}
+		|method_call:t								{:RESULT = t;:};
+
+this_var_call ::= THIS DOT var_call:t				{:VarCall t1 = new VarCall("this"); t1.setNext(t); RESULT = t1;:}
+		|var_call:t									{:RESULT = t;:};
+		
+		
+this_var_method_call ::= THIS DOT var_method_call:t {:RESULT = t;:}
+		|var_method_call:t							{:RESULT = t;:};
+
+var_method_call ::= var_call:t 	{:RESULT = t;:}
+		|method_call:t			{:RESULT = t;:};
+		
+var_call ::= call_list:t1 DOT simple_var_call:t2	{:((VarCall)t1).setNext(t2);RESULT = t1;:}
+		|simple_var_call:t							{:RESULT = t;:};
+
+method_call ::= call_list:t1 DOT simple_method_call:t2 {:((VarCall)t1).setNext(t2);RESULT = t1;:}
+		|simple_method_call:t							{:RESULT = t;:};
+
+simple_var_call ::= ID:id list_dim_array:exps		{:RESULT = new ArrayItemCall(id,exps);:}
+	|ID:id 											{:RESULT = new VarCall(id);:};
+		
+call_list ::= call_list:t1 DOT simple_call:t2		{:((VarCall)t1).setNext(t2);RESULT = t1;:}
+		|simple_call:t								{:RESULT = t;:};
+
+simple_call ::=  simple_var_call:t 					{:RESULT = t;:}
+		|simple_method_call:t						{:RESULT = t;:};
+
+		
+cast_value ::= LPAREN prim_type:t RPAREN expression:e1 {:RESULT = new Cast(e1,t);:};
+
+visibility::= PUBLIC  
+			| PRIVATE 	
+			|;
+
+is_static::= STATIC	
+		|;
+new_line::= NEWLINE
+		|;
+
+/*-----------------------------------FIN DEL ARCHIVO*---------------------------------------*/

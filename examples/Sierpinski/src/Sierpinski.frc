@@ -1,0 +1,101 @@
+#import <Canvas.frc>
+#import <Figura.frc>
+public class Sierpinski{
+	Array<int> fondo
+	string titulo
+	public void init(){
+		titulo = " Proyecto Compiladores "
+		fondo = new Array(3)
+		fondo[0] = 255
+		fondo[1] = 255
+		fondo[2] = 255
+	}
+	public void main(){
+		init()
+		Canvas c = new Canvas(400,400,fondo)
+		setCanvas(c)
+		Texto(titulo,30,30,255,255,0)
+		Figura f = new Figura()
+		f.paint()
+	
+		pruebaFor()
+		int test = 6
+		int fact = factorial(test)
+		string fibbo = "Suceción de fibonacci de 60 " + fibonacci(60) 
+		Imprimir("El factorial de ", test, " es ", fact)
+		Imprimir("Factorial recursivo de, ", test, " = ", factorialRecursivo(test))
+		Imprimir(fibbo)
+		Imprimir(2/3)
+		Imprimir((int)2/3)
+		Imprimir((char)70)
+		pruebaSwitch()
+		Imprimir(1/0)
+		
+	}
+	public void pruebaSwitch(){
+		for(int x = 0, x<10, x++){
+			switch(x){
+				case 1:
+					Imprimir("Prueba switch - Entra en case 1") 
+					break
+				case 2:
+					Imprimir("Prueba switch - Entra en case 2")
+					break
+				default:
+					Imprimir("Prueba switch - Entra en default")
+					break
+			}
+		}
+	}
+	public void setCanvas(Canvas c){
+		Lienzo(c.getAlto(),c.getAncho(),c.color[0],c.color[1],c.color[2])
+	}
+	public void setCanvas(int alto, int ancho, int r, int g, int b){
+		Lienzo(alto,ancho,r,g,b)
+	}
+	public void pruebaFor(){
+		Imprimir("Inicia ciclo")
+		for(int x = 0, x<20,x++){
+			if(x>5 && x <= 9){
+				Imprimir(x," es mayor que 5 y menor o igual que 9")
+			}else if(x==5 || x<5){
+				Imprimir(x," es igual o menor a 5")
+			}else{
+				Imprimir(x, " es mayor que 9")
+			}
+			Imprimir((x==19)?{"Se acabo el ciclo"}:{"Siguiente"})
+		}
+	}
+	public int factorial(int n){
+		int resultado = 1
+		if(n>0){
+			while(n > 0){
+				resultado = resultado * n
+				n--
+			}
+		}
+		return resultado
+	}
+	public int factorialRecursivo(int n){
+		int res 
+		if(n<1){
+			res = 1
+		}else{
+			res = factorialRecursivo(n-1) * n
+		}
+		return res
+	}
+	public string fibonacci(int numero){
+		string fibbo = " = { 1"
+		int valor = 1 
+		int fibo = 0
+		int anterior = 0 
+		do { 
+			fibo = valor + anterior
+			fibbo = fibbo + ", " + fibo 
+			anterior= valor 
+			valor= fibo
+		}while (fibo < numero)
+		return fibbo + "}"
+	}
+}

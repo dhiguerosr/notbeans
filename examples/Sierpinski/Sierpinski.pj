@@ -1,0 +1,11 @@
+<Proyecto nombre = "Sierpinski" ruta = "C:\Users\Dennis\FractalDraw Projects\Sierpinski">
+	<Archivos>
+		<Archivo nombre = "Canvas.frc"/>
+		<Archivo nombre = "Sierpinski.frc"/>
+		<Archivo nombre = "Herencia.frc"/>
+		<Archivo nombre = "Figura.frc"/>
+	</Archivos>
+	<Principal>
+		<Archivo nombre = "Sierpinski.frc"/>
+	</Principal>
+</Proyecto>

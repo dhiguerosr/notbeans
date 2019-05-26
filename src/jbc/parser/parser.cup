@@ -1,0 +1,181 @@
+package jbc.parser;
+
+import java.util.Stack;
+import jbc.parser.nodes.*;
+import java_cup.runtime.Symbol;
+
+parser code
+{:
+    
+
+    /**Metodo al que se llama automaticamente ante algun error sintactico.*/
+    public void syntax_error(Symbol s){
+		//ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+		//ErrorManager.setDesc("");
+        System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+        
+    }
+   
+
+
+    /**Metodo al que se llama en el momento en que ya no es posible una recuperacion de errores.*/
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+		//ErrorManager.syntaxError(new Err(s.value.toString(),s.right,s.left)); 
+		//ErrorManager.setDesc("");
+		System.out.println("Error Sintactico -> lexema: " +s.value+" Linea: " +s.right+ " Columna: "+s.left);
+    }
+
+:}
+action code
+{:
+:}
+
+/*Declaracion de simbolos terminales*/
+
+terminal String LINEA;
+terminal String TEXTO;
+terminal String ARC0;
+terminal String RECTANGULO;
+terminal String OVALO;
+terminal String POLIGONO;
+terminal String LIENZO;
+terminal String IMPRIMIR;
+
+terminal LESS;
+terminal GREATER;
+terminal LPAREN;
+terminal RPAREN;
+terminal LBRACKET;
+terminal RBRACKET;
+terminal EQL;
+terminal PLUS;
+terminal MINUS;
+terminal DIV;
+terminal TIMES;
+terminal LHOOK;
+terminal RHOOK;
+terminal POW;
+
+
+terminal EQUALS;
+terminal NOTEQL;
+terminal GEQL;
+terminal LEQL;
+
+terminal COLON;
+terminal SEMI_COLON;
+
+terminal STACK;
+terminal HEAP;
+terminal METHOD;
+terminal CALL;
+terminal GOTO;
+terminal IF;
+terminal THEN;
+terminal STRCAT;
+terminal String INT_STRING;
+terminal String INT_FLOAT;
+terminal String FLOAT_INT;
+terminal String INT_CHAR;
+terminal String FLOAT_STRING;
+terminal String BOOL_STRING;
+terminal String CHAR_INT;
+terminal String CHAR_STRING;
+terminal String ID;
+terminal String NUM;
+terminal String DEC;
+
+
+/*Declaracion de simbolos NO terminales*/
+non terminal program;
+non terminal method_list;
+non terminal Method method;
+non terminal Stack<Node> instructions;
+non terminal Stack<Node> ins_list;
+non terminal Node ins;
+non terminal Node assign;
+non terminal Node if_then;
+non terminal Node expression;
+non terminal Node l_expresion;
+non terminal Node value;
+non terminal Node method_call;
+non terminal Node cast;
+
+/*GRAMMAR START*/
+start with program;
+
+program ::= method_list:ins					
+	|;
+
+method_list::= method:i method_list			{:CodeManager.addMethod(i);:}
+	|method:i								{:CodeManager.addMethod(i);:};
+	
+
+method ::= 
+	METHOD ID:id LPAREN RPAREN LBRACKET 
+	instructions:ins RBRACKET 				{:RESULT = new Method(id,ins);:};
+
+instructions::= ins_list:ins				{:RESULT = ins;:}
+	|										{:RESULT = new Stack<>();:};
+
+ins_list ::= ins:i  ins_list:ins			{:ins.push(i);RESULT = ins;:}
+	|ins:i 									{:RESULT = new Stack<>(); RESULT.push(i);:};
+	
+ins::= assign:t SEMI_COLON							{:RESULT =t;:}
+	|if_then:t SEMI_COLON							{:RESULT =t;:}
+	|method_call:t SEMI_COLON							{:RESULT =t;:}
+	|GOTO ID:id SEMI_COLON							{:RESULT = new IfGoto(id);:}
+	|ID:id COLON									{:RESULT = new Label(id);:};	
+
+assign::= 
+	STACK LHOOK value:v1 RHOOK EQL expression:v2	{:RESULT = new Assign("stack",v1,v2);:}
+	|HEAP LHOOK value:v1 RHOOK EQL expression:v2	{:RESULT = new Assign("heap",v1,v2);:}
+	|ID:id EQL expression:v1						{:RESULT = new Assign(id,v1);:};
+
+if_then::= 
+	IF l_expresion:exp THEN GOTO ID:id		{:RESULT = new IfGoto(exp,id);:};	
+
+expression::= 
+	value:v1 PLUS value:v2			{:RESULT = new Operation(v1,v2,"+");:}
+	|value:v1 MINUS value:v2		{:RESULT = new Operation(v1,v2,"-");:}
+	|value:v1 TIMES value:v2		{:RESULT = new Operation(v1,v2,"*");:}
+	|value:v1 POW value:v2			{:RESULT = new Operation(v1,v2,"^");:}
+	|value:v1 DIV value:v2			{:RESULT = new Operation(v1,v2,"/");:}
+	|value:v1 STRCAT value:v2		{:RESULT = new Operation(v1,v2,"strcat");:}
+	|value:v1						{:RESULT = v1;:}
+	|STACK LHOOK value:v1 RHOOK 	{:RESULT = new ID("stack",v1);:}
+	|HEAP LHOOK value:v1 RHOOK 		{:RESULT = new ID("heap",v1);:};
+
+l_expresion ::= 
+	value:v1 EQUALS value:v2 		{:RESULT = new Comparation(v1,v2,"==");:}
+	|value:v1 NOTEQL value:v2		{:RESULT = new Comparation(v1,v2,"!=");:}
+	|value:v1 GREATER value:v2		{:RESULT = new Comparation(v1,v2,">");:}
+	|value:v1 GEQL value:v2			{:RESULT = new Comparation(v1,v2,">=");:}
+	|value:v1 LESS value:v2			{:RESULT = new Comparation(v1,v2,"<");:}
+	|value:v1 LEQL value:v2			{:RESULT = new Comparation(v1,v2,"<=");:};
+	
+value::= cast:c			{:RESULT = c;:}
+	|ID:id				{:RESULT = new ID(id);:}
+	|NUM:num			{:RESULT = new Value(num);:}				
+	|DEC:dec			{:RESULT = new Value(dec);:};
+	
+cast ::= INT_STRING:id value:v1						{:RESULT = new Cast(id,v1);:}
+	|INT_FLOAT:id value:v1							{:RESULT = new Cast(id,v1);:}
+	|FLOAT_INT:id value:v1							{:RESULT = new Cast(id,v1);:}
+	|INT_CHAR:id value:v1 							{:RESULT = new Cast(id,v1);:}
+	|FLOAT_STRING:id value:v1 						{:RESULT = new Cast(id,v1);:}
+	|BOOL_STRING:id value:v1 						{:RESULT = new Cast(id,v1);:}
+	|CHAR_INT:id value:v1							{:RESULT = new Cast(id,v1);:}
+	|CHAR_STRING:id value:v1						{:RESULT = new Cast(id,v1);:};
+	
+method_call::= CALL IMPRIMIR:id LPAREN RPAREN		{:RESULT = new MethodCall(id);:}
+	|CALL LIENZO:id LPAREN RPAREN					{:RESULT = new MethodCall(id);:}
+	|CALL POLIGONO:id LPAREN RPAREN					{:RESULT = new MethodCall(id);:}
+	|CALL RECTANGULO:id LPAREN RPAREN				{:RESULT = new MethodCall(id);:}
+	|CALL OVALO:id LPAREN RPAREN 					{:RESULT = new MethodCall(id);:}
+	|CALL ARC0:id LPAREN RPAREN						{:RESULT = new MethodCall(id);:}
+	|CALL TEXTO:id LPAREN RPAREN					{:RESULT = new MethodCall(id);:}
+	|CALL LINEA:id LPAREN RPAREN					{:RESULT = new MethodCall(id);:}
+	|CALL ID:id LPAREN RPAREN						{:RESULT = new MethodCall(id);:};
+
+/*-----------------------------------FIN DEL ARCHIVO*---------------------------------------*/
